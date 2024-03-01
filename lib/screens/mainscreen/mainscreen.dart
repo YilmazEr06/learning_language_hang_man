@@ -44,12 +44,20 @@ class buttons extends StatelessWidget {
         child: Column(
       children: [
         GestureDetector(
-            onTap: () {},
-            child: Image(image: AssetImage("lib/assets/start.png"))),
-        SizedBox(
+            onTap: () {
+              Navigator.pushNamed(context,  '/selectlevelpage');
+            },
+            child: const Image(image: AssetImage("lib/assets/start.png"))),
+        const SizedBox(
           height: 6,
         ),
-        Image(image: AssetImage("lib/assets/skortable.png"))
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/scorpage');
+          },
+          child: const Image(
+            image: AssetImage("lib/assets/skortable.png")
+            ))
       ],
     ));
   }

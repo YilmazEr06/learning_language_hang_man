@@ -19,7 +19,6 @@ class catagoryrow extends StatelessWidget {
           catagoryitem(text: "Bilim"),
           catagoryitem(text: "Sanat"),
           catagoryitem(text: "Matematik"),
-      
         ],
       ),
     );
