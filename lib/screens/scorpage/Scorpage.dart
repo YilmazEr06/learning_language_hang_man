@@ -3,7 +3,6 @@ import 'package:hang_man/screens/scorpage/companents/Scorinfobar.dart';
 import 'package:hang_man/screens/scorpage/companents/catagoryrow.dart';
 import 'package:hang_man/screens/scorpage/companents/userlistcolumn.dart';
 
-
 class Scorpage extends StatefulWidget {
   const Scorpage({super.key});
 
@@ -12,6 +11,15 @@ class Scorpage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<Scorpage> {
+  String category = "Hepsi";
+  void changecategory(String category) {
+    setState(() {
+      print("object");
+      print(category);
+      this.category = category;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,17 +28,16 @@ class _MyHomePageState extends State<Scorpage> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           color: const Color.fromARGB(255, 245, 233, 146),
-          child: const Column(children: [
-            SizedBox(
+          child:  Column(children: [
+            const SizedBox(
               height: 15,
             ),
-            Scorinfobar(),
-            catagoryrow(),
-            userlistcolumn()
+            const Scorinfobar(),
+            catagoryrow(callback: changecategory,currentcatagory: category),
+            userlistcolumn(catagory: category,)
           ]),
         ),
       ),
     ));
   }
 }
-

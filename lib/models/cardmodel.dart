@@ -33,9 +33,9 @@ class CardModel {
 //
   Map<String, dynamic> toFirestore() {
     return {
-      if (name != null) "username": name,
-      if (wordscount != null) "email": wordscount,
-      if (uid != null) "uid": uid,
+      "username": name,
+      "email": wordscount,
+      "uid": uid,
     };
   }
 }

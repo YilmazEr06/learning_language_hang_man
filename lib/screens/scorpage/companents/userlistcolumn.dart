@@ -1,35 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:hang_man/bloc/databloc.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class userlistcolumn extends StatelessWidget {
   const userlistcolumn({
-    super.key,
+    super.key, 
+   required this.catagory,
   });
-
+  final catagory;
   @override
   Widget build(BuildContext context) {
     return Container(
       color: const Color.fromARGB(0, 33, 149, 243),
       height: MediaQuery.of(context).size.height*0.8,
-      child: const SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            listitemwinner(),
-            listitemwinner(),
-            listitemwinner(),
-            listitemwinner(),
-            listitemwinner(),
-            listitemwinner(),
-            listitemwinner(),
-            listitemwinner(),
-            listitemwinner(),
-            listitemwinner(),
-            listitemwinner(),
-            listitemwinner(),
-            listitemwinner(),
-          ],
-        ),
+      child: FutureBuilder(
+        future: Data().getcorlist(catagory),
+        builder:  (BuildContext context, AsyncSnapshot<List> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator();
+            } else {
+              if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                var a = snapshot.data;
+                List<Widget> heads = [];
+                for (var b in a!) {
+                  heads.add(GestureDetector(
+                    onTap: () {
+                      
+                    },
+                    child: listitemwinner(),
+                  ));
+                }
+                return SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: heads,
+                    ));
+              }
+            }
+          },
       ),
     );
   }

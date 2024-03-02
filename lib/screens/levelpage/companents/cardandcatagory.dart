@@ -66,3 +66,29 @@ class card extends StatelessWidget {
     );
   }
 }
+Padding head(String head,bool iscurrent) {
+  double width = 0;
+  if (head.length.toDouble() * 15 < 100) {
+    width = 100;
+  } else {
+    width = head.length.toDouble() * 18;
+  }
+
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: SizedBox(
+      height: 45,
+      width: width,
+      child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: iscurrent? Colors.amber: Colors.grey,
+          ),
+          child: Center(
+              child: Text(
+            head,
+            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          ))),
+    ),
+  );
+}
