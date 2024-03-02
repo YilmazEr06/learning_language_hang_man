@@ -2,6 +2,19 @@ import 'package:hang_man/models/cardmodel.dart';
 import 'package:hang_man/models/usermodelforscortable.dart';
 
 class Data {
+  Future<Map> get userinfo async {
+    Map map = {
+      "Users": {
+        "username": "Radrescan",
+        "scor": 1000,
+        "uid": 12345,
+        "level": 5,
+      },
+      
+    };
+    return map;
+  }
+
   Future<List> getlevelcards(catagory) async {
     if (catagory == "Bilim") {
       List<CardModel> cards = [

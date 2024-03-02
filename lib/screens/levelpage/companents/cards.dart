@@ -52,7 +52,12 @@ class _cardsState extends State<cards> {
                 ),
                 itemCount: snapshot.data?.length ?? 0,
                 itemBuilder: (context, index) {
-                  return card();
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/gamepage');
+                      print(" bastın");
+                    },
+                    child: card());
                 },
               ),
             );

@@ -1,11 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:hang_man/bloc/databloc.dart';
+import 'package:hang_man/data_sources/dbhelper.dart';
 import 'package:hang_man/screens/mainscreen/companents/dialog.dart';
 import 'package:stroke_text/stroke_text.dart';
 
-class userinfobar extends StatelessWidget {
-  const userinfobar({
-    super.key,
-  });
+class userinfobar extends StatefulWidget {
+  const userinfobar({super.key});
+
+  @override
+  State<userinfobar> createState() => _userinfobarState();
+}
+
+class _userinfobarState extends State<userinfobar> {
+  late bool x;
+  String name = "";
+  int scor = 0;
+  int uid = 12345;
+  int level = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      x = Dbhelper().dbstatus;
+      Data().userinfo.then((value) {
+        setState(() {
+          name = value["Users"]["username"];
+          scor = value["Users"]["scor"];
+          uid = value["Users"]["uid"];
+          level = value["Users"]["level"];
+        });
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +58,25 @@ class userinfobar extends StatelessWidget {
                   left: 65,
                   top: 5,
                 ),
-                const skorvalue(left: 120, top: 10),
-                const username(
-                  left: 70,
-                  top: 38,
-                ),
-                settingsicon(context)
+                 skorvalue(left: 120, top: 10,skor: scor),
+                username(left: 70, top: 38, name: name),
+                x ? settingsicon(context, false) : settingsicon(context, true)
               ],
             )),
       ),
     );
   }
 
-  Positioned settingsicon(BuildContext context) {
+  Positioned settingsicon(BuildContext context, bool x) {
+    if (x) {
+      Navigator.of(context).push(PageRouteBuilder(
+          opaque: false,
+          barrierDismissible: true,
+          pageBuilder: (BuildContext context, _, __) {
+            return Container(child: CustomDialog());
+          }));
+    } else {}
+
     return Positioned(
         top: 8,
         right: 15,
@@ -64,23 +97,20 @@ class userinfobar extends StatelessWidget {
   }
 }
 
-
 class username extends StatelessWidget {
-  const username({
-    super.key,
-    required this.left,
-    required this.top,
-  });
+  const username(
+      {super.key, required this.left, required this.top, required this.name});
   final double left;
   final double top;
+  final name;
   @override
   Widget build(BuildContext context) {
     return Positioned(
         top: top,
         left: left,
-        child: const Text(
-          "PLAYER#123",
-          style: TextStyle(
+        child: Text(
+          name,
+          style: const TextStyle(
               fontSize: 20,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.bold),
@@ -113,8 +143,9 @@ class skorvalue extends StatelessWidget {
     super.key,
     required this.left,
     required this.top,
+    required this.skor,
   });
-
+  final int skor;
   final double left;
   final double top;
 
@@ -123,8 +154,8 @@ class skorvalue extends StatelessWidget {
     return Positioned(
         left: left,
         top: top,
-        child: const StrokeText(
-          text: "123456789",
+        child:  StrokeText(
+          text: skor.toString(),
           strokeWidth: 2.5,
           strokeColor: Colors.black,
           textStyle: TextStyle(

@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:hang_man/bloc/databloc.dart';
+import 'package:hang_man/data_sources/dbhelper.dart';
 import 'package:hang_man/screens/mainscreen/companents/dialog.dart';
 import 'package:stroke_text/stroke_text.dart';
 
-class userinfobar extends StatelessWidget {
+class userinfobar extends StatefulWidget {
   const userinfobar({
     super.key,
   });
 
   @override
+  State<userinfobar> createState() => _userinfobarState();
+}
+
+class _userinfobarState extends State<userinfobar> {
+ 
+  @override
   Widget build(BuildContext context) {
+  
     return Padding(
       padding: const EdgeInsets.only(
         top: 10,
@@ -32,9 +41,10 @@ class userinfobar extends StatelessWidget {
                   top: 5,
                 ),
                 const skorvalue(left: 120, top: 10),
-                const username(
+                 username(
                   left: 70,
                   top: 38,
+                 
                 ),
                 settingsicon(context)
               ],
@@ -70,7 +80,9 @@ class username extends StatelessWidget {
     super.key,
     required this.left,
     required this.top,
+    
   });
+  
   final double left;
   final double top;
   @override
@@ -78,9 +90,9 @@ class username extends StatelessWidget {
     return Positioned(
         top: top,
         left: left,
-        child: const Text(
-          "PLAYER#123",
-          style: TextStyle(
+        child:  Text(
+         "PLAyer#123",
+          style: const TextStyle(
               fontSize: 20,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.bold),

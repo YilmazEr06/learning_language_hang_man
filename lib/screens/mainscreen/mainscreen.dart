@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:hang_man/screens/mainscreen/companents/userinfobar.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -9,15 +10,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
+  
+
   @override
   Widget build(BuildContext context) {
+    
+  
     return Scaffold(
         body: SingleChildScrollView(
       child: Center(
         child: Container(
            height: MediaQuery.of(context).size.height,
           color: const Color.fromARGB(255, 245, 233, 146),
-          child: const Column(children: [
+          child:  const Column(children: [
             SizedBox(
               height: 15,
             ),

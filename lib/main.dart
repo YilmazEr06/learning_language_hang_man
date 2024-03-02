@@ -4,11 +4,16 @@ import 'package:hang_man/screens/levelpage/levelpage.dart';
 import 'package:hang_man/screens/mainscreen/companents/dialog.dart';
 import 'package:hang_man/screens/mainscreen/mainscreen.dart';
 import 'package:hang_man/screens/scorpage/Scorpage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 
 
-
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 

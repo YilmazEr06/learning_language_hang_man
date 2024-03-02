@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hang_man/screens/mainscreen/companents/userinfobar.dart';
+
+import '../levelpage/companents/userinfobar.dart';
+
 
 class Gamepage extends StatefulWidget {
   const Gamepage({super.key});
