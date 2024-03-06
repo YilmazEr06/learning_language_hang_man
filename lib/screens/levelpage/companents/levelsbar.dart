@@ -1,59 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:hang_man/bloc/databloc.dart';
-import 'package:hang_man/data_sources/dbhelper.dart';
+
 import 'package:hang_man/screens/mainscreen/companents/dialog.dart';
 import 'package:stroke_text/stroke_text.dart';
 
-class userinfobar extends StatefulWidget {
-  const userinfobar({
-    super.key,
-  });
+class Levelspar extends StatefulWidget {
+  const Levelspar({super.key});
 
   @override
-  State<userinfobar> createState() => _userinfobarState();
+  State<Levelspar> createState() => _userinfobarState();
 }
 
-class _userinfobarState extends State<userinfobar> {
- 
+class _userinfobarState extends State<Levelspar> {
+
   @override
   Widget build(BuildContext context) {
-  
     return Padding(
       padding: const EdgeInsets.only(
-        top: 10,
+        top: 20,
         left: 10,
         right: 10,
       ),
-      child: Hero(
-        tag: "hero-tag",
-        child: Container(
-            alignment: Alignment.center,
-            height: 70,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(255, 247, 213, 1),
-              borderRadius: BorderRadius.all(Radius.elliptical(64, 64)),
-            ),
-            child: Stack(
-              children: [
-                const leadingicon(left: 10, top: 7.5),
-                const skoricon(
-                  left: 65,
-                  top: 5,
-                ),
-                const skorvalue(left: 120, top: 10),
-                 username(
-                  left: 70,
-                  top: 38,
-                 
-                ),
-                settingsicon(context)
-              ],
-            )),
-      ),
+      child: Container(
+          alignment: Alignment.center,
+          height: 70,
+          decoration: const BoxDecoration(
+            color: Color.fromRGBO(255, 247, 213, 1),
+            borderRadius: BorderRadius.all(Radius.elliptical(64, 64)),
+          ),
+          child: const Center(
+            child: Text("Levels",style: const TextStyle(fontSize: 35)),
+          )),
     );
   }
 
-  Positioned settingsicon(BuildContext context) {
+  Positioned settingsicon(BuildContext context, bool x) {
+    if (x) {
+      Navigator.of(context).push(PageRouteBuilder(
+          opaque: false,
+          barrierDismissible: true,
+          pageBuilder: (BuildContext context, _, __) {
+            return Container(child: CustomDialog());
+          }));
+    } else {}
+
     return Positioned(
         top: 8,
         right: 15,
@@ -74,24 +63,19 @@ class _userinfobarState extends State<userinfobar> {
   }
 }
 
-
 class username extends StatelessWidget {
-  const username({
-    super.key,
-    required this.left,
-    required this.top,
-    
-  });
-  
+  const username(
+      {super.key, required this.left, required this.top, required this.name});
   final double left;
   final double top;
+  final name;
   @override
   Widget build(BuildContext context) {
     return Positioned(
         top: top,
         left: left,
-        child:  Text(
-         "PLAyer#123",
+        child: Text(
+          name,
           style: const TextStyle(
               fontSize: 20,
               fontStyle: FontStyle.normal,
@@ -125,8 +109,9 @@ class skorvalue extends StatelessWidget {
     super.key,
     required this.left,
     required this.top,
+    required this.skor,
   });
-
+  final int skor;
   final double left;
   final double top;
 
@@ -135,11 +120,11 @@ class skorvalue extends StatelessWidget {
     return Positioned(
         left: left,
         top: top,
-        child: const StrokeText(
-          text: "123456789",
+        child:  StrokeText(
+          text: skor.toString(),
           strokeWidth: 2.5,
           strokeColor: Colors.black,
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.bold,
               fontSize: 20),

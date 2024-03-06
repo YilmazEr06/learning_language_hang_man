@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hang_man/screens/gamepage/gamescreen.dart';
+import 'package:hang_man/screens/catagorypage/catagorypage.dart';
 import 'package:hang_man/screens/levelpage/levelpage.dart';
 import 'package:hang_man/screens/mainscreen/companents/dialog.dart';
 import 'package:hang_man/screens/mainscreen/mainscreen.dart';
@@ -26,9 +27,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         routes: {
       '/changenamedialog':(context)=>CustomDialog(),
-      '/selectlevelpage':(context)=>const Levelpage(),
+      '/selectCatagorypage':(context)=>const Catagorypage(),
       '/gamepage':(context)=>const Gamepage(),
       '/scorpage':(context)=>const Scorpage(),
+      '/selectlevelpage':(context)=>const Levelpage(),
     },
       title: 'Flutter Demo',
       theme: ThemeData(

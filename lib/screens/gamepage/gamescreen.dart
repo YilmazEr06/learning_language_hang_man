@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hang_man/data_sources/firebase.dart';
+import 'package:hang_man/screens/mainscreen/companents/userinfobar.dart';
 
-import '../levelpage/companents/userinfobar.dart';
+
 
 
 class Gamepage extends StatefulWidget {
@@ -11,6 +13,12 @@ class Gamepage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<Gamepage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Firebasehlp().getcatagories();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

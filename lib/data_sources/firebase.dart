@@ -1,59 +1,69 @@
-import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class firebasehlp {
+
+class Firebasehlp {
   bool a = false;
+  var db = FirebaseFirestore.instance;
 
-  Stream<User?> get getstatus {
-   var  astream= FirebaseAuth.instance.authStateChanges();
-    return astream;
+  Future<List> getcatagories() async {
+    List catagories = ["hepsi"];
+    final docRef = db.collection("games");
+    var x = await docRef.get();
+   
+    for (var i in x.docs) {
+      catagories.add(i.id);
+    };
+    return catagories;
   }
 
-  String get currentuserid {
-    String user = (FirebaseAuth.instance.currentUser == null)
-        ? ""
-        : FirebaseAuth.instance.currentUser!.uid;
-
-    return user;
+  
+  Future<List> getlevels(String id,String catagory) async {
+    List levels = [];
+    final docRef = db.collection("games").doc(catagory).
+    collection("fields").doc(id).collection("levels");
+    var x = await docRef.get();
+   
+    for (var i in x.docs) {
+      levels.add(i.id);
+    
+    };
+ 
+    return levels;
   }
 
-  Future<List<Object>> createuserWithemailandPassword(
-      String emailAddress, String password) async {
-    try {
-     UserCredential a = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailAddress,
-        password: password,
-      );
-      return ["succes",a];
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        return ['The password provided is too weak.'];
-      } else if (e.code == 'email-already-in-use') {
-        return ['The account already exists for that email.'];
-      }
-      return [e.code];
-    } catch (e) {
-      return ['The account already exists for that email.'];
+
+  Future<List> getcards(String catagory) async {
+    List cards = [];
+    final docRef = db.collection("games").doc(catagory).collection("fields");
+    var x = await docRef.get();
+
+    for (var i in x.docs) {
+      var list =[i.id,i.data()];
+      cards.add(list);
     }
+    return cards;
+  }
+  Future<List> getallcards() async {
+    List cards = [];
+    final docRef = db.collection("games");
+    var x = await docRef.get();
+    print(x.docs);
+    for (var i in x.docs) {
+      print(i.id);
+      var y = await docRef.doc(i.id).collection("fields").get();
+      for (var g in y.docs){
+        print(g.id);
+        print(g.data());  
+        cards.add([g.id,g.data()]); 
+           }
+    
+      
+    }
+    return cards;
   }
 
-  Future<String> loginWithemailAndPassword(emailAddress, password) async {
-    try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: emailAddress, password: password);
-      return "succes";
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        return 'No user found for that email.';
-      } else if (e.code == 'wrong-password') {
-        return 'No user found for that email.';
-      } else if (e.code == "network-requested-faild") {
-        return "Network eror";
-      } else {
-        return e.code;
-      }
-    }
-  }
+
 
   logout() async {
     await FirebaseAuth.instance.signOut();

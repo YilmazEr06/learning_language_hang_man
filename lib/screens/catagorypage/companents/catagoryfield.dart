@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hang_man/bloc/databloc.dart';
-import 'package:hang_man/screens/levelpage/companents/cardandcatagory.dart';
+import 'package:hang_man/screens/catagorypage/companents/cardandcatagory.dart';
 
 class CategoryFields extends StatefulWidget {
   const CategoryFields({

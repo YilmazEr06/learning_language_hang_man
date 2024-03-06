@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hang_man/bloc/databloc.dart';
-import 'package:hang_man/screens/levelpage/companents/cardandcatagory.dart';
+import 'package:hang_man/screens/catagorypage/companents/cardandcatagory.dart';
 
 class cards extends StatefulWidget {
   const cards({
@@ -35,7 +35,7 @@ class _cardsState extends State<cards> {
       future: Data().getlevelcards(widget.catagory),
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else {
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
@@ -54,10 +54,11 @@ class _cardsState extends State<cards> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/gamepage');
-                      print(" bastın");
+                      Navigator.pushNamed(
+                        context, '/selectlevelpage',
+                        arguments:[ snapshot.data![index][0],snapshot.data![index][1]]);
                     },
-                    child: card());
+                    child: card(data: [snapshot.data![index]],));
                 },
               ),
             );

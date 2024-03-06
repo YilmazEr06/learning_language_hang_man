@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hang_man/data_sources/shared_preferences.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class CustomDialog extends StatelessWidget {
+   TextEditingController controller= TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -53,9 +56,10 @@ class CustomDialog extends StatelessWidget {
                         child: Material( // Wrap TextField with Material widget
                           color: const Color.fromARGB(255, 243, 226, 179),
                           borderRadius: BorderRadius.circular(20),
-                          child: const Padding(
+                          child:  Padding(
                             padding: EdgeInsets.only(left: 8.0),
                             child: TextField(
+                              controller: controller,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: '#oldname',
@@ -68,7 +72,14 @@ class CustomDialog extends StatelessWidget {
                     Positioned(
                       top: 130,
                       left: 125,
-                      child: Image.asset("lib/assets/save.png"),
+                      child: GestureDetector(
+                        onTap: () {
+                           Shared_preferences().setuserid(controller.text).then((value) {
+                            Navigator.pop(context);
+                           });
+                           
+                        },
+                        child: Image.asset("lib/assets/save.png")),
                     ),
                   ],
                 ),
