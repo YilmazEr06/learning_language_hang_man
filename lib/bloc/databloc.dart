@@ -32,8 +32,11 @@ class Data {
   }
   
   Future<List> getlevels(String id,String catagory) async {
-   
     return Firebasehlp().getlevels(id,catagory);
+  }
+
+  Future<List> getwords(String id,String catagory,String level) async {
+    return Firebasehlp().getwords(id,catagory,level);
   }
   
   Future<List> getcorlist(String a) async {

@@ -6,6 +6,7 @@ import 'package:hang_man/screens/mainscreen/companents/dialog.dart';
 import 'package:hang_man/screens/mainscreen/mainscreen.dart';
 import 'package:hang_man/screens/scorpage/Scorpage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hang_man/screens/wordview/wordviewpage.dart';
 import 'firebase_options.dart';
 
 
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       '/gamepage':(context)=>const Gamepage(),
       '/scorpage':(context)=>const Scorpage(),
       '/selectlevelpage':(context)=>const Levelpage(),
+      '/wordview':(context)=>const Wordviewpage(),
     },
       title: 'Flutter Demo',
       theme: ThemeData(
