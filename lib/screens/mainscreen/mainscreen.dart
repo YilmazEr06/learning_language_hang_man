@@ -69,24 +69,27 @@ class buttons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-        child: Column(
-      children: [
-        GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/selectCatagorypage');
-            },
-            child: const Image(image: AssetImage("lib/assets/start.png"))),
-        const SizedBox(
-          height: 6,
-        ),
-        GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/scorpage');
-            },
-            child: const Image(image: AssetImage("lib/assets/skortable.png")))
-      ],
-    ));
+    return Stack(
+      children: [ Positioned(
+          child: Column(
+        children: [
+          GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/selectCatagorypage');
+              },
+              child: const Image(image: AssetImage("lib/assets/start.png"))),
+          const SizedBox(
+            height: 6,
+          ),
+          GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/scorpage');
+              },
+              child: const Image(image: AssetImage("lib/assets/skortable.png")))
+        ],
+      )),],
+   
+    );
   }
 }
 

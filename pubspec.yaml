@@ -83,7 +83,12 @@ flutter:
     - lib\assets\adam4.png
     - lib\assets\tac.png
     - lib\assets\kupa.png
-
+    - lib\assets\kelle.png
+    - lib\assets\Line2.png
+    - lib\assets\Line3.png
+    - lib\assets\Line4.png
+    - lib\assets\Line5.png
+    - lib\assets\Line6.png
  
 
   # An image asset can refer to one or more resolution-specific "variants", see

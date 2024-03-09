@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hang_man/data_sources/firebase.dart';
 import 'package:hang_man/models/word.dart';
+import 'package:hang_man/screens/gamepage/companents/adam.dart';
 import 'package:hang_man/screens/gamepage/companents/field.dart';
 import 'package:hang_man/screens/mainscreen/companents/userinfobar.dart';
 import 'companents/klavye.dart';
@@ -18,21 +19,24 @@ class _MyHomePageState extends State<Gamepage> {
     // TODO: implement initState
     super.initState();
     Firebasehlp().getcatagories();
-    
   }
-List passedbuttons = [];
+
+  List passedbuttons = [];
   @override
   Widget build(BuildContext context) {
     List<WordModel> arguments =
         ModalRoute.of(context)?.settings.arguments as List<WordModel>;
-    
-    addpassedbuttons(String x){
-     setState(() {
-       passedbuttons.add(x);
-       passedbuttons= passedbuttons;
-       print(passedbuttons);
-     });
+
+    addpassedbuttons(String x) {
+      setState(() {
+        if (!passedbuttons.contains(x)) {
+          passedbuttons.add(x);
+          passedbuttons = passedbuttons;
+          print(passedbuttons);
+        }
+      });
     }
+
     return Scaffold(
         body: SingleChildScrollView(
       child: Center(
@@ -45,7 +49,7 @@ List passedbuttons = [];
             ),
             const userinfobar(),
             page(arguments: arguments, passedbuttons: passedbuttons),
-            buttons(
+            klavye(
               passedbuttons: addpassedbuttons,
             )
           ]),
@@ -65,12 +69,12 @@ class page extends StatefulWidget {
   });
   final List<WordModel> arguments;
   final List passedbuttons;
-
   @override
   State<page> createState() => _pageState();
 }
 
 class _pageState extends State<page> {
+  
   @override
   Widget build(BuildContext context) {
     List<field> fields = [];
@@ -78,7 +82,16 @@ class _pageState extends State<page> {
     double size = 25;
     List<String> words = widget.arguments[index].name.split(" ");
     List<Row> rows = [];
-
+  int sayac = 0;
+    
+    for (String i in widget.passedbuttons) {
+      if (!widget.arguments[index].name.contains(i)) {
+        setState(() {
+          print(sayac);
+          sayac = sayac + 1;
+        });
+      }
+    }
     for (var x in words) {
       if (x.length > 6) {
         if (size > (6 * 24) / x.length) size = (6 * 24) / x.length;
@@ -106,9 +119,7 @@ class _pageState extends State<page> {
         top: -85,
         child: Row(
           children: [
-            Image(
-                height: MediaQuery.of(context).size.height * 0.65,
-                image: const AssetImage("lib/assets/ADAM.png")),
+            buildadam(sayac: sayac),
           ],
         ),
       ),
@@ -137,8 +148,8 @@ class _pageState extends State<page> {
             height: MediaQuery.of(context).size.height * 0.25,
             width: MediaQuery.of(context).size.width * 0.8,
             child: Column(
-              children: rows,
               mainAxisAlignment: MainAxisAlignment.center,
+              children: rows,
             ),
           )),
     ]);

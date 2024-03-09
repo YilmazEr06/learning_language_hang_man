@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-class buttons extends StatelessWidget {
-  const buttons({
+class klavye extends StatelessWidget {
+  const klavye({
     super.key, required this.passedbuttons,
   });
   
