@@ -74,7 +74,7 @@ class CustomDialog extends StatelessWidget {
                       left: 125,
                       child: GestureDetector(
                         onTap: () {
-                           Shared_preferences().setuserid(controller.text).then((value) {
+                           Shared_preferences().setusername(controller.text).then((value) {
                             Navigator.pop(context);
                            });
                            

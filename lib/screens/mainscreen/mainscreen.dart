@@ -1,6 +1,7 @@
 import 'dart:async';
-import 'dart:math';
 import 'package:flutter/material.dart';
+
+import 'package:hang_man/screens/mainscreen/companents/bottomsheet.dart';
 import 'package:hang_man/screens/mainscreen/companents/userinfobar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,27 +13,37 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
     islogin();
-
   }
 
   islogin() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
-    bool? isLogin = !(sp.getString('id')==null);
+    bool? isLogin = !(sp.getString('name') == null);
     Timer(
-      const Duration(
-      microseconds: 1,
-      ),
+      const Duration(milliseconds: 30),
       () {
-        if (isLogin) {
+        if (isLogin == true) {
           print("Giriş yapılmış");
-        
+          
+         
         } else {
-          print("Giriş yapılmamış");
-          Navigator.pushNamed(context, '/changenamedialog');
+           if (mounted) {
+            _scaffoldKey.currentState?.showBottomSheet(
+
+
+              (BuildContext context) {
+            
+              return const bottomshet();
+            },
+            ).closed.whenComplete(() {
+              islogin();
+            });
+          }
         }
       },
     );
@@ -41,24 +52,26 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Center(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          color: const Color.fromARGB(255, 245, 233, 146),
-          child: const Column(children: [
-            SizedBox(
-              height: 15,
-            ),
-            userinfobar(),
-            page(),
-            buttons()
-          ]),
+      key: _scaffoldKey,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Builder(builder: (context) {
+            return Container(
+              height: MediaQuery.of(context).size.height,
+              color: const Color.fromARGB(255, 245, 233, 146),
+              child: Column(children: [
+                SizedBox(
+                  height: 15,
+                ),
+                userinfobar(),
+                page(),
+                buttons(),
+              ]),
+            );
+          }),
         ),
       ),
-    )
-        // This trailing comma makes auto-formatting nicer for build methods.
-        );
+    );
   }
 }
 
@@ -70,25 +83,27 @@ class buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [ Positioned(
-          child: Column(
-        children: [
-          GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/selectCatagorypage');
-              },
-              child: const Image(image: AssetImage("lib/assets/start.png"))),
-          const SizedBox(
-            height: 6,
-          ),
-          GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/scorpage');
-              },
-              child: const Image(image: AssetImage("lib/assets/skortable.png")))
-        ],
-      )),],
-   
+      children: [
+        Positioned(
+            child: Column(
+          children: [
+            GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/selectCatagorypage');
+                },
+                child: const Image(image: AssetImage("lib/assets/start.png"))),
+            const SizedBox(
+              height: 6,
+            ),
+            GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/scorpage');
+                },
+                child:
+                    const Image(image: AssetImage("lib/assets/skortable.png")))
+          ],
+        )),
+      ],
     );
   }
 }

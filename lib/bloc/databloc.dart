@@ -1,20 +1,23 @@
 import 'package:hang_man/data_sources/firebase.dart';
 
 import 'package:hang_man/models/usermodelforscortable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Data {
-  Future<Map> get userinfo async {
-    Map map = {
-      "Users": {
-        "username": "Radrescan",
-        "scor": 1000,
-        "uid": 12345,
-        "level": 5,
-      },
-    };
-    return map;
-  }
-
+  Future<Map<String, dynamic>> getUserInfo() async {
+  SharedPreferences sp = await SharedPreferences.getInstance();
+  String? username = sp.getString("name");
+  print(username);
+  Map<String, dynamic> userInfo = {
+    "Users": {
+      "username": username != null && username.isNotEmpty ? username : "İsimsiz",
+      "scor": 1000,
+      "uid": 12345,
+      "level": 5,
+    },
+  };
+  return userInfo;
+}
   Future<List> getlevelcards(catagory) async {
     List cards=[];
     if (catagory== "hepsi"){

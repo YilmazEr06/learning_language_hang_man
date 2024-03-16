@@ -23,7 +23,7 @@ class _userinfobarState extends State<userinfobar> {
     super.initState();
     setState(() {
       x = Dbhelper().dbstatus;
-      Data().userinfo.then((value) {
+      Data().getUserInfo().then((value) {
         setState(() {
           name = value["Users"]["username"];
           scor = value["Users"]["scor"];
