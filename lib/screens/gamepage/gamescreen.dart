@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hang_man/data_sources/firebase.dart';
 import 'package:hang_man/models/word.dart';
 import 'package:hang_man/screens/gamepage/companents/adam.dart';
+import 'package:hang_man/screens/gamepage/companents/deadialog.dart';
 import 'package:hang_man/screens/gamepage/companents/field.dart';
 import 'package:hang_man/screens/mainscreen/companents/userinfobar.dart';
 import 'companents/klavye.dart';
@@ -82,33 +85,31 @@ class _pageState extends State<page> {
     double size = 25;
     List<String> words = widget.arguments[index].name.split(" ");
     List<Row> rows = [];
-  int sayac = 0;
-    
+    int sayac = 0;
     for (String i in widget.passedbuttons) {
       if (!widget.arguments[index].name.contains(i)) {
         setState(() {
           print(sayac);
           sayac = sayac + 1;
+         
         });
+         if(sayac==6){
+          sayac=sayac+1;
+            Timer(
+           const   Duration( seconds: 1), () {
+               Navigator.of(context).push( PageRouteBuilder(
+                opaque: false,
+                barrierDismissible: false,
+                pageBuilder: (BuildContext context, _, __) {
+                  
+                  return Deadialog();
+                }));
+             });
+           
+          }
       }
     }
-    for (var x in words) {
-      if (x.length > 6) {
-        if (size > (6 * 24) / x.length) size = (6 * 24) / x.length;
-      }
-      fields = [];
-      for (String i in x.characters) {
-        fields.add(field(
-          x: i.toUpperCase(),
-          size: size,
-          visible: widget.passedbuttons.contains(i) ? false : true,
-        ));
-      }
-      rows.add(Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: fields,
-      ));
-    }
+    preparedwords(words, size, fields, rows);
     return Stack(children: [
       Positioned(
         child: Image(
@@ -127,7 +128,7 @@ class _pageState extends State<page> {
           left: MediaQuery.of(context).size.width * 0.4,
           top: MediaQuery.of(context).size.height * 0.10,
           width: MediaQuery.of(context).size.width * 0.5,
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.25,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -135,7 +136,7 @@ class _pageState extends State<page> {
                 Text(
                   widget.arguments[index].description,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 ),
               ],
             ),
@@ -153,5 +154,25 @@ class _pageState extends State<page> {
             ),
           )),
     ]);
+  }
+
+  void preparedwords(List<String> words, double size, List<field> fields, List<Row> rows) {
+    for (var x in words) {
+      if (x.length > 6) {
+        if (size > (6 * 24) / x.length) size = (6 * 24) / x.length;
+      }
+      fields = [];
+      for (String i in x.characters) {
+        fields.add(field(
+          x: i.toUpperCase(),
+          size: size,
+          visible: widget.passedbuttons.contains(i) ? false : true,
+        ));
+      }
+      rows.add(Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: fields,
+      ));
+    }
   }
 }

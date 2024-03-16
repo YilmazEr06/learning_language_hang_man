@@ -102,7 +102,7 @@ class ListItem extends ListTile {
         child: ListTile(
           onTap: () {
             
-            Navigator.pushNamed(context,  '/wordview',arguments: [id,catagory,i]);
+            Navigator.pushReplacementNamed(context,  '/wordview',arguments: [id,catagory,i]);
           },
           tileColor: const Color.fromARGB(255, 236, 8, 8),
           title: Text(i.toUpperCase()),

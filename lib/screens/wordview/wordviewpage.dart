@@ -98,7 +98,7 @@ class _inside_of_wordviewState extends State<inside_of_wordview> {
                         if (i < max-1) {
                           i = i + 1;
                         }else if (i == max-1) {
-                          Navigator.pushNamed(
+                          Navigator.pushReplacementNamed(
                             context, '/gamepage', arguments:widget.words );
                         }
                       });

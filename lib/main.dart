@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hang_man/screens/gamepage/companents/deadialog.dart';
 import 'package:hang_man/screens/gamepage/gamescreen.dart';
 import 'package:hang_man/screens/catagorypage/catagorypage.dart';
 import 'package:hang_man/screens/levelpage/levelpage.dart';
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
       '/scorpage':(context)=>const Scorpage(),
       '/selectlevelpage':(context)=>const Levelpage(),
       '/wordview':(context)=>const Wordviewpage(),
+      '/deaddialog':(context)=>Deadialog(),
+      '/main':(context)=>const MyHomePage(),
+      
     },
       title: 'Flutter Demo',
       theme: ThemeData(
