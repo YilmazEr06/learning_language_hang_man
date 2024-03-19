@@ -42,6 +42,7 @@ dependencies:
   cloud_firestore: ^4.15.6
   firebase_auth: ^4.17.6
   shared_preferences: ^2.2.2
+  flutter_svg: ^2.0.10+1
   
 
 dev_dependencies:
@@ -89,6 +90,13 @@ flutter:
     - lib\assets\Line4.png
     - lib\assets\Line5.png
     - lib\assets\Line6.png
+    - lib\assets\person.svg
+    - lib\assets\icon _info_.svg
+    - lib\assets\ultraof.svg
+    - lib\assets\volumelow.svg
+    - lib\assets\headphones.svg
+    - lib\assets\keyboard.png
+    - lib\assets\indir.jpeg
  
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -102,17 +110,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
+  fonts:
+    - family: akayakanadaka
+      fonts:
+        - asset: lib\fonts\AkayaKanadaka-Regular.ttf
+          style: italic
+    
+
+  
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:hang_man/screens/gamepage/companents/deadialog.dart';
 import 'package:hang_man/screens/gamepage/gamescreen.dart';
 import 'package:hang_man/screens/catagorypage/catagorypage.dart';
@@ -8,6 +7,7 @@ import 'package:hang_man/screens/mainscreen/companents/dialog.dart';
 import 'package:hang_man/screens/mainscreen/mainscreen.dart';
 import 'package:hang_man/screens/scorpage/Scorpage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hang_man/screens/settingsscreen/settings.dart';
 import 'package:hang_man/screens/splashscreen/splash.dart';
 import 'package:hang_man/screens/wordview/wordviewpage.dart';
 import 'firebase_options.dart';
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: const settings(),
     );
   }
 }
