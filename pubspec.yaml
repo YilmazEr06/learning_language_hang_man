@@ -65,38 +65,9 @@ flutter:
   uses-material-design: true
 
 
-  assets:
-    - lib/assets/Usericon.png
-    - lib\assets\skor.png
-    - lib\assets\page.png
-    - lib\assets\start.png
-    - lib\assets\skortable.png
-    - lib\assets\save.png
-    - lib\assets\stickman.png
-    - lib\assets\ADAM.png
-    - lib\assets\underline.png
-    - lib\assets\math.png
-    - lib\assets\adam1.png
-    - lib\assets\adam2.png
-    - lib\assets\adam3.png
-    - lib\assets\adam4.png
-    - lib\assets\tac.png
-    - lib\assets\kupa.png
-    - lib\assets\kelle.png
-    - lib\assets\Line2.png
-    - lib\assets\Line3.png
-    - lib\assets\Line4.png
-    - lib\assets\Line5.png
-    - lib\assets\Line6.png
-    - lib\assets\person.svg
-    - lib\assets\icon _info_.svg
-    - lib\assets\ultraof.svg
-    - lib\assets\volumelow.svg
-    - lib\assets\headphones.svg
-    - lib\assets\keyboard.png
-    - lib\assets\indir.jpeg
-    - lib\assets\audio\rainy-day.mp3
-   
+  
+    
+    
  
 
   # An image asset can refer to one or more resolution-specific "variants", see

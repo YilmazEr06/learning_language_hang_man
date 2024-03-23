@@ -20,21 +20,24 @@ class _HomePageWidgetState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFEDDB9A),
-      body: SafeArea(
-        top: true,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const Appbar(),
-              const Userphoto(),
-              const Username(),
-              userid(context),
-              const Slidersound(),
-              const Keyboardsound(),
-            ],
+    return Hero(
+      tag: "a",
+      child: Scaffold(
+        backgroundColor: const Color(0xFFEDDB9A),
+        body: SafeArea(
+          top: true,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const Appbar(),
+                const Userphoto(),
+                const Username(),
+                userid(context),
+                const Slidersound(),
+                const Keyboardsound(),
+              ],
+            ),
           ),
         ),
       ),
