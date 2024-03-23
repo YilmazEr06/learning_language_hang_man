@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class appbar extends StatelessWidget {
-  const appbar({
+class Appbar extends StatelessWidget {
+  const Appbar({
     super.key,
   });
 
@@ -22,8 +22,7 @@ class appbar extends StatelessWidget {
       alignment: const AlignmentDirectional(0, 0),
       child: const Stack(
         children: [
-          Text(
-          
+          Text( 
             'AYARLAR',style: TextStyle(
               fontFamily: "akayakanadaka",
               fontSize:50

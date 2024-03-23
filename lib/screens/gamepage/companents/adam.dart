@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class buildadam extends StatefulWidget {
-  const buildadam({
+class Buildadam extends StatefulWidget {
+  const Buildadam({
     super.key,
     required this.sayac,
   });
   final int sayac;
 
   @override
-  State<buildadam> createState() => _buildadamState();
+  State<Buildadam> createState() => BuildadamState();
 }
 
-class _buildadamState extends State<buildadam> {
+class BuildadamState extends State<Buildadam> {
   @override
   Widget build(BuildContext context) {
     double x = -180;

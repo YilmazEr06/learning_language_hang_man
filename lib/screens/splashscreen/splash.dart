@@ -1,9 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:hang_man/screens/scorpage/companents/Scorinfobar.dart';
-import 'package:hang_man/screens/scorpage/companents/catagoryrow.dart';
-import 'package:hang_man/screens/scorpage/companents/userlistcolumn.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,9 +12,9 @@ class SplashScreen extends StatefulWidget {
 class _MyHomePageState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
-    Timer(Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 2), () {
       Navigator.pushReplacementNamed(context, "/main");
      });
   }

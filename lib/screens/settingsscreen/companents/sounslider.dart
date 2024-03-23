@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class slidersound extends StatefulWidget {
-  const slidersound({
+class Slidersound extends StatefulWidget {
+  const Slidersound({
     super.key,
   });
 
   @override
-  State<slidersound> createState() => _slidersoundState();
+  State<Slidersound> createState() => SlidersoundState();
 }
 
-class _slidersoundState extends State<slidersound> {
+class SlidersoundState extends State<Slidersound> {
   late double slidersoundvalue;
   @override
   void initState() {

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Shared_preferences {
+class Sharedpreferences {
   SharedPreferences? prefs;
 
   Future get srfcs async {
@@ -12,7 +12,7 @@ class Shared_preferences {
   Future setusername(String name) async {
     prefs = await SharedPreferences.getInstance();
     prefs!.setString('name', name).then((value) {
-      print(prefs!.getString("name"));
+     
     });
 
   

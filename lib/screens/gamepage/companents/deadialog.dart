@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hang_man/data_sources/shared_preferences.dart';
-import 'package:hang_man/main.dart';
+
 import 'package:stroke_text/stroke_text.dart';
 
 class Deadialog extends StatelessWidget {
-  TextEditingController controller = TextEditingController();
+  final TextEditingController controller = TextEditingController();
   Deadialog({super.key});
 
   @override

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:hang_man/screens/settingsscreen/companents/appbar.dart';
 import 'package:hang_man/screens/settingsscreen/companents/keyboardsoundslider.dart';
 import 'package:hang_man/screens/settingsscreen/companents/sounslider.dart';
@@ -7,14 +6,14 @@ import 'package:hang_man/screens/settingsscreen/companents/userid.dart';
 import 'package:hang_man/screens/settingsscreen/companents/username.dart';
 import 'package:hang_man/screens/settingsscreen/companents/userphoto.dart';
 
-class settings extends StatefulWidget {
-  const settings({super.key});
+class Settings extends StatefulWidget {
+  const Settings({super.key});
 
   @override
-  State<settings> createState() => _HomePageWidgetState();
+  State<Settings> createState() => _HomePageWidgetState();
 }
 
-class _HomePageWidgetState extends State<settings> {
+class _HomePageWidgetState extends State<Settings> {
   late double slidersoundvalue;
   late double sliderkeyboardsoundvalue;
   
@@ -29,12 +28,12 @@ class _HomePageWidgetState extends State<settings> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              appbar(),
-              userphoto(),
-              username(),
+              const Appbar(),
+              const Userphoto(),
+              const Username(),
               userid(context),
-              slidersound(),
-              keyboardsound(),
+              const Slidersound(),
+              const Keyboardsound(),
             ],
           ),
         ),

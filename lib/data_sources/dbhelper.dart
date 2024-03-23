@@ -5,8 +5,8 @@ import 'package:path/path.dart';
 
 class Dbhelper {
   Database? _db;
-   String Username="";
-  String Tablename = "UserInfo";
+   String  username="";
+  String tablename = "UserInfo";
   
   bool get dbstatus{
     if (_db != null) {
@@ -21,7 +21,7 @@ class Dbhelper {
   }
   
    Future<Database>  createdb_(String username) async {
-    Username=username;
+    username=username;
      _db = await inilizedb();
     return _db!;
   }
@@ -43,13 +43,13 @@ class Dbhelper {
 
   Future<void> createdb(Database db, int version) async {
     await db.execute("""
-create table $Tablename(
+create table $tablename(
   "username" TEXT DEFAULT "?",
   "skor" INTEGER NOT NULL DEFAULT 0,
   "created_at" INTEGER NOT NULL DEFAULT (cast(strftime('%s','now') as int )),
   "updated_at" INTEGER,
   "firstopen" bool DEFAULT false ,
   PRIMARY KEY("id" AUTOINCREMENT))
-    """,[Username]);
+    """,[username]);
   }
 }

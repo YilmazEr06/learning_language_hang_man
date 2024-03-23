@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class keyboardsound extends StatefulWidget {
-  const keyboardsound({
+class Keyboardsound extends StatefulWidget {
+  const Keyboardsound({
     super.key,
   });
 
   @override
-  State<keyboardsound> createState() => _slidersoundState();
+  State<Keyboardsound> createState() => SlidersoundState();
 }
 
-class _slidersoundState extends State<keyboardsound> {
+class SlidersoundState extends State<Keyboardsound> {
   late double slidervalue ;
   @override
   void initState() {

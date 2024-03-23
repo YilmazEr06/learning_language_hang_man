@@ -6,12 +6,14 @@ import 'package:hang_man/models/word.dart';
 import 'package:hang_man/screens/gamepage/companents/adam.dart';
 import 'package:hang_man/screens/gamepage/companents/deadialog.dart';
 import 'package:hang_man/screens/gamepage/companents/field.dart';
-import 'package:hang_man/screens/mainscreen/companents/userinfobar.dart';
-import 'companents/klavye.dart';
+import 'package:hang_man/screens/gamepage/companents/klavye.dart';
+import 'package:hang_man/screens/gamepage/companents/userinfobar.dart';
+
+
+
 
 class Gamepage extends StatefulWidget {
   const Gamepage({super.key});
-
   @override
   State<Gamepage> createState() => _MyHomePageState();
 }
@@ -19,7 +21,6 @@ class Gamepage extends StatefulWidget {
 class _MyHomePageState extends State<Gamepage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Firebasehlp().getcatagories();
   }
@@ -35,7 +36,6 @@ class _MyHomePageState extends State<Gamepage> {
         if (!passedbuttons.contains(x)) {
           passedbuttons.add(x);
           passedbuttons = passedbuttons;
-          print(passedbuttons);
         }
       });
     }
@@ -46,26 +46,24 @@ class _MyHomePageState extends State<Gamepage> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           color: const Color.fromARGB(255, 245, 233, 146),
-          child: Column(children: [
-            const SizedBox(
-              height: 15,
-            ),
-            const userinfobar(),
-            page(arguments: arguments, passedbuttons: passedbuttons),
-            klavye(
-              passedbuttons: addpassedbuttons,
-            )
-          ]),
+          child: SafeArea(
+            maintainBottomViewPadding: true,
+            child: Column(children: [
+             const Userinfobar(),
+              Gamepaper(arguments: arguments, passedbuttons: passedbuttons),
+              Klavye(
+                passedbuttons: addpassedbuttons,
+              )
+            ]),
+          ),
         ),
       ),
-    )
-        // This trailing comma makes auto-formatting nicer for build methods.
-        );
+    ));
   }
 }
 
-class page extends StatefulWidget {
-  const page({
+class Gamepaper extends StatefulWidget {
+  const Gamepaper({
     super.key,
     required this.arguments,
     required this.passedbuttons,
@@ -73,14 +71,13 @@ class page extends StatefulWidget {
   final List<WordModel> arguments;
   final List passedbuttons;
   @override
-  State<page> createState() => _pageState();
+  State<Gamepaper> createState() => PageState();
 }
 
-class _pageState extends State<page> {
-  
+class PageState extends State<Gamepaper> {
   @override
   Widget build(BuildContext context) {
-    List<field> fields = [];
+    List<Field> fields = [];
     int index = 0;
     double size = 25;
     List<String> words = widget.arguments[index].name.split(" ");
@@ -89,24 +86,19 @@ class _pageState extends State<page> {
     for (String i in widget.passedbuttons) {
       if (!widget.arguments[index].name.contains(i)) {
         setState(() {
-          print(sayac);
           sayac = sayac + 1;
-         
         });
-         if(sayac==6){
-          sayac=sayac+1;
-            Timer(
-           const   Duration( seconds: 1), () {
-               Navigator.of(context).push( PageRouteBuilder(
+        if (sayac == 6) {
+          sayac = sayac + 1;
+          Timer(const Duration(seconds: 1), () {
+            Navigator.of(context).push(PageRouteBuilder(
                 opaque: false,
                 barrierDismissible: false,
                 pageBuilder: (BuildContext context, _, __) {
-                  
                   return Deadialog();
                 }));
-             });
-           
-          }
+          });
+        }
       }
     }
     preparedwords(words, size, fields, rows);
@@ -120,7 +112,7 @@ class _pageState extends State<page> {
         top: -85,
         child: Row(
           children: [
-            buildadam(sayac: sayac),
+            Buildadam(sayac: sayac),
           ],
         ),
       ),
@@ -136,7 +128,8 @@ class _pageState extends State<page> {
                 Text(
                   widget.arguments[index].description,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 25),
                 ),
               ],
             ),
@@ -156,14 +149,15 @@ class _pageState extends State<page> {
     ]);
   }
 
-  void preparedwords(List<String> words, double size, List<field> fields, List<Row> rows) {
+  void preparedwords(
+      List<String> words, double size, List<Field> fields, List<Row> rows) {
     for (var x in words) {
       if (x.length > 6) {
         if (size > (6 * 24) / x.length) size = (6 * 24) / x.length;
       }
       fields = [];
       for (String i in x.characters) {
-        fields.add(field(
+        fields.add(Field(
           x: i.toUpperCase(),
           size: size,
           visible: widget.passedbuttons.contains(i) ? false : true,

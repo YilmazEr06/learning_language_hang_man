@@ -13,7 +13,7 @@ class Firebasehlp {
     for (var i in x.docs) {
       catagories.add(i.id);
     }
-    ;
+
     return catagories;
   }
 
@@ -49,7 +49,7 @@ class Firebasehlp {
     for (var i in x.docs) {
       words.add(i.data());
     }
-    print(words);
+
     return words;
   }
 
@@ -69,13 +69,10 @@ class Firebasehlp {
     List cards = [];
     final docRef = db.collection("games");
     var x = await docRef.get();
-    print(x.docs);
+
     for (var i in x.docs) {
-      print(i.id);
       var y = await docRef.doc(i.id).collection("fields").get();
       for (var g in y.docs) {
-        print(g.id);
-        print(g.data());
         cards.add([g.id, g.data()]);
       }
     }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:hang_man/bloc/databloc.dart';
 
-class catagoryrow extends StatelessWidget {
-  const catagoryrow({
+class Catagoryrow extends StatelessWidget {
+  const Catagoryrow({
     super.key,
     required this.callback,
     required this.currentcatagory,
@@ -14,14 +14,14 @@ class catagoryrow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Color.fromARGB(0, 36, 145, 234),
+        color: const Color.fromARGB(0, 36, 145, 234),
         height: 50,
         width: MediaQuery.of(context).size.width,
         child: FutureBuilder<List>(
           future: Data().getcatagory(),
           builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             } else {
               if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
@@ -34,8 +34,8 @@ class catagoryrow extends StatelessWidget {
                       callback(b);
                     },
                     child: (currentcatagory == b)
-                        ? catagoryitem(text: b,isselected: true,)
-                        : catagoryitem(text: b,isselected: false),
+                        ? Catagoryitem(text: b,isselected: true,)
+                        : Catagoryitem(text: b,isselected: false),
                   ));
                 }
                 return SingleChildScrollView(
@@ -50,13 +50,13 @@ class catagoryrow extends StatelessWidget {
   }
 }
 
-class catagoryitem extends StatelessWidget {
-  const catagoryitem({
+class Catagoryitem extends StatelessWidget {
+  const Catagoryitem({
     super.key,
-    this.text,
+    required this.text,
     required this.isselected,
   });
-  final text;
+  final String text;
   final bool isselected;
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class catagoryitem extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: isselected? Color.fromARGB(255, 241, 190, 24): Color.fromARGB(255, 251, 219, 113),
+            color: isselected? const Color.fromARGB(255, 241, 190, 24): const Color.fromARGB(255, 251, 219, 113),
             borderRadius: BorderRadius.circular(20)),
         height: 35,
         width: 100,

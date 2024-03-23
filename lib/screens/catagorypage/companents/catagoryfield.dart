@@ -18,14 +18,20 @@ class _CategoryFieldsState extends State<CategoryFields> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Color.fromARGB(0, 36, 145, 234),
+        color:  const Color.fromARGB(0, 36, 145, 234),
         height: 75,
         width: MediaQuery.of(context).size.width,
         child: FutureBuilder<List>(
           future: Data().getcatagory(),
           builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return 
+                const  Center(
+                   child:  SizedBox(
+                    height: 50,
+                    width: 50,
+                    child:  CircularProgressIndicator()),
+                 );
             } else {
               if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');

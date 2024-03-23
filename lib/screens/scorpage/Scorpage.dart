@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hang_man/screens/scorpage/companents/Scorinfobar.dart';
 import 'package:hang_man/screens/scorpage/companents/catagoryrow.dart';
-import 'package:hang_man/screens/scorpage/companents/userlistcolumn.dart';
+import 'package:hang_man/screens/scorpage/companents/userlistcolumn/userlistcolumn.dart';
+
 
 class Scorpage extends StatefulWidget {
   const Scorpage({super.key});
-
   @override
   State<Scorpage> createState() => _MyHomePageState();
 }
@@ -14,8 +14,6 @@ class _MyHomePageState extends State<Scorpage> {
   String category = "Hepsi";
   void changecategory(String category) {
     setState(() {
-      print("object");
-      print(category);
       this.category = category;
     });
   }
@@ -32,9 +30,9 @@ class _MyHomePageState extends State<Scorpage> {
             const SizedBox(
               height: 15,
             ),
-            const Scorinfobar(),
-            catagoryrow(callback: changecategory,currentcatagory: category),
-            userlistcolumn(catagory: category,)
+            const ScorInfoBar(),
+            Catagoryrow(callback: changecategory,currentcatagory: category),
+            Userlistcolumn(catagory: category,)
           ]),
         ),
       ),

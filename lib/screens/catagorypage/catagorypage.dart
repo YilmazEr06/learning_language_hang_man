@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hang_man/screens/catagorypage/companents/cards.dart';
 import 'package:hang_man/screens/catagorypage/companents/catagoryfield.dart';
-import 'package:hang_man/screens/mainscreen/companents/userinfobar.dart';
+import 'package:hang_man/screens/gamepage/companents/userinfobar.dart';
 
 
 
@@ -19,14 +19,12 @@ class _MyHomePageState extends State<Catagorypage> {
   @override
   void initState() {
     super.initState();
-    category = "Hepsi";
+    category = "hepsi";
     changecategory(category);
   }
 
   void changecategory(String category) {
     setState(() {
-      print("object");
-      print(category);
       this.category = category;
     });
   }
@@ -38,15 +36,18 @@ class _MyHomePageState extends State<Catagorypage> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           color: const Color.fromARGB(255, 245, 233, 146),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 15),
-                const userinfobar(),
-                CategoryFields(callback: changecategory,currentcatagory: category),
-                cards(catagory: category),
-              ],
+          child: SafeArea(
+            maintainBottomViewPadding: true,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  
+                  const Userinfobar(),
+                  CategoryFields(callback: changecategory,currentcatagory: category),
+                  Cards(catagory: category),
+                ],
+              ),
             ),
           ),
         ),

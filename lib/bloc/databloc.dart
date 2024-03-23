@@ -7,7 +7,6 @@ class Data {
   Future<Map<String, dynamic>> getUserInfo() async {
   SharedPreferences sp = await SharedPreferences.getInstance();
   String? username = sp.getString("name");
-  print(username);
   Map<String, dynamic> userInfo = {
     "Users": {
       "username": username != null && username.isNotEmpty ? username : "İsimsiz",
@@ -54,7 +53,6 @@ class Data {
       return cards;
     } else {
       var x = await Firebasehlp().getcards("a");
-      print("kart");
       return [x];
     }
   }

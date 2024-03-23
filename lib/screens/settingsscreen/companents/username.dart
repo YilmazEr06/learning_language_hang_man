@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class username extends StatelessWidget {
-  const username({
+class Username extends StatelessWidget {
+  const Username({
     super.key,
   });
 
@@ -37,7 +37,7 @@ class username extends StatelessWidget {
                           width: 60,
                           height: 60,
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(57, 68, 67, 67),
+                              color: const Color.fromARGB(57, 68, 67, 67),
                               borderRadius: BorderRadius.circular(50)),
                           child: Center(
                               child: SvgPicture.asset(
@@ -53,7 +53,7 @@ class username extends StatelessWidget {
                         height: 55,
                         width: MediaQuery.of(context).size.width * 0.65,
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(31, 60, 61, 62),
+                            color: const Color.fromARGB(31, 60, 61, 62),
                             borderRadius: BorderRadius.circular(15)),
                         child: const TextField(
                           decoration:  InputDecoration(

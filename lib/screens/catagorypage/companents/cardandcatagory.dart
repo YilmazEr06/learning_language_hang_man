@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class card extends StatelessWidget {
-  const card({
+class Cardclass extends StatelessWidget {
+  const Cardclass({
     super.key, 
     required this.data,
   });
  final List data;
   @override
   Widget build(BuildContext context) {
-    print(data[0]);
+    
     return Card(
       color: Colors.grey,
       child: SizedBox(
@@ -56,7 +56,7 @@ class card extends StatelessWidget {
                   left: 10,
                   child: Text(
                     "${data[0][1]["levelcounts"]} seviye mevcut",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 255, 8, 8)),
@@ -70,10 +70,10 @@ class card extends StatelessWidget {
 }
 Padding head(String head,bool iscurrent) {
   double width = 0;
-  if (head.length.toDouble() * 15 < 100) {
+  if (head.length.toDouble() * 22 < 100) {
     width = 100;
   } else {
-    width = head.length.toDouble() * 18;
+    width = head.length.toDouble() * 22;
   }
 
   return Padding(
@@ -83,12 +83,12 @@ Padding head(String head,bool iscurrent) {
       width: width,
       child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
+            borderRadius: BorderRadius.circular(15),
             color: iscurrent? Colors.amber: Colors.grey,
           ),
           child: Center(
               child: Text(
-            head,
+            head.toUpperCase(),
             style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ))),
     ),

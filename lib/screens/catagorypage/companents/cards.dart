@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:hang_man/bloc/databloc.dart';
 import 'package:hang_man/screens/catagorypage/companents/cardandcatagory.dart';
 
-class cards extends StatefulWidget {
-  const cards({
+class Cards extends StatefulWidget {
+  const Cards({
     super.key,
     required this.catagory,
   });
   final String catagory;
 
   @override
-  State<cards> createState() => _cardsState();
+  State<Cards> createState() => _CardsState();
 }
 
-class _cardsState extends State<cards> {
+class _CardsState extends State<Cards> {
   List items = [];
   @override
   void initState() {
@@ -25,7 +25,6 @@ class _cardsState extends State<cards> {
     final data = await Data().getlevelcards(widget.catagory);
     setState(() {
       items = data; // Handle null case
-      print(items.length);
     });
   }
 
@@ -35,7 +34,7 @@ class _cardsState extends State<cards> {
       future: Data().getlevelcards(widget.catagory),
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          return const Center(child:  CircularProgressIndicator());
         } else {
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
@@ -58,7 +57,7 @@ class _cardsState extends State<cards> {
                         context, '/selectlevelpage',
                         arguments:[ snapshot.data![index][0],snapshot.data![index][1]]);
                     },
-                    child: card(data: [snapshot.data![index]],));
+                    child: Cardclass(data: [snapshot.data![index]],));
                 },
               ),
             );

@@ -3,9 +3,8 @@ import 'package:hang_man/screens/gamepage/companents/deadialog.dart';
 import 'package:hang_man/screens/gamepage/gamescreen.dart';
 import 'package:hang_man/screens/catagorypage/catagorypage.dart';
 import 'package:hang_man/screens/levelpage/levelpage.dart';
-import 'package:hang_man/screens/mainscreen/companents/dialog.dart';
 import 'package:hang_man/screens/mainscreen/mainscreen.dart';
-import 'package:hang_man/screens/scorpage/Scorpage.dart';
+import 'package:hang_man/screens/scorpage/scorpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hang_man/screens/settingsscreen/settings.dart';
 import 'package:hang_man/screens/splashscreen/splash.dart';
@@ -33,7 +32,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         routes: {
-      '/changenamedialog':(context)=>CustomDialog(),
       '/selectCatagorypage':(context)=>const Catagorypage(),
       '/gamepage':(context)=>const Gamepage(),
       '/scorpage':(context)=>const Scorpage(),
@@ -41,6 +39,7 @@ class MyApp extends StatelessWidget {
       '/wordview':(context)=>const Wordviewpage(),
       '/deaddialog':(context)=>Deadialog(),
       '/main':(context)=>const MyHomePage(),
+      '/settings':(context)=>const Settings()
       
     },
       title: 'Flutter Demo',
@@ -48,7 +47,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const settings(),
+      home: const SplashScreen(),
     );
   }
 }

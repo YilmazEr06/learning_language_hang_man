@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Scorinfobar extends StatelessWidget {
-  const Scorinfobar({
+class ScorInfoBar extends StatelessWidget {
+  const ScorInfoBar({
     super.key,
   });
 

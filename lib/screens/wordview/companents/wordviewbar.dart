@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-
-import 'package:hang_man/screens/mainscreen/companents/dialog.dart';
 import 'package:stroke_text/stroke_text.dart';
 
-class wordviewbar extends StatefulWidget {
-  const wordviewbar({super.key});
+class Wordviewbar extends StatefulWidget {
+  const Wordviewbar({super.key});
 
   @override
-  State<wordviewbar> createState() => _userinfobarState();
+  State<Wordviewbar> createState() => UserinfobarState();
 }
 
-class _userinfobarState extends State<wordviewbar> {
-
+class UserinfobarState extends State<Wordviewbar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        top: 20,
+        top: 8,
         left: 10,
         right: 10,
       ),
@@ -28,32 +25,18 @@ class _userinfobarState extends State<wordviewbar> {
             borderRadius: BorderRadius.all(Radius.elliptical(64, 64)),
           ),
           child: const Center(
-            child: Text("Word View",style: const TextStyle(fontSize: 35)),
+            child: Text("Word View", style: TextStyle(fontSize: 35)),
           )),
     );
   }
 
   Positioned settingsicon(BuildContext context, bool x) {
-    if (x) {
-      Navigator.of(context).push(PageRouteBuilder(
-          opaque: false,
-          barrierDismissible: true,
-          pageBuilder: (BuildContext context, _, __) {
-            return Container(child: CustomDialog());
-          }));
-    } else {}
-
     return Positioned(
         top: 8,
         right: 15,
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).push(PageRouteBuilder(
-                opaque: false,
-                barrierDismissible: true,
-                pageBuilder: (BuildContext context, _, __) {
-                  return Container(child: CustomDialog());
-                }));
+            Navigator.of(context).pushNamed('/settings');
           },
           child: const Icon(
             Icons.settings_outlined,
@@ -63,12 +46,12 @@ class _userinfobarState extends State<wordviewbar> {
   }
 }
 
-class username extends StatelessWidget {
-  const username(
+class Username extends StatelessWidget {
+  const Username(
       {super.key, required this.left, required this.top, required this.name});
   final double left;
   final double top;
-  final name;
+  final String name;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -84,8 +67,8 @@ class username extends StatelessWidget {
   }
 }
 
-class skoricon extends StatelessWidget {
-  const skoricon({
+class Skoricon extends StatelessWidget {
+  const Skoricon({
     super.key,
     required this.left,
     required this.top,
@@ -104,8 +87,8 @@ class skoricon extends StatelessWidget {
   }
 }
 
-class skorvalue extends StatelessWidget {
-  const skorvalue({
+class Skorvalue extends StatelessWidget {
+  const Skorvalue({
     super.key,
     required this.left,
     required this.top,
@@ -120,7 +103,7 @@ class skorvalue extends StatelessWidget {
     return Positioned(
         left: left,
         top: top,
-        child:  StrokeText(
+        child: StrokeText(
           text: skor.toString(),
           strokeWidth: 2.5,
           strokeColor: Colors.black,
@@ -132,8 +115,8 @@ class skorvalue extends StatelessWidget {
   }
 }
 
-class leadingicon extends StatelessWidget {
-  const leadingicon({super.key, required this.left, required this.top});
+class Leadingicon extends StatelessWidget {
+  const Leadingicon({super.key, required this.left, required this.top});
 
   final double left;
   final double top;
