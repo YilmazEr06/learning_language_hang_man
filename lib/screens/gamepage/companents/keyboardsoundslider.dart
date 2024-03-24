@@ -37,7 +37,7 @@ class SlidersoundState extends State<Keyboardsound> {
           children: [
             Positioned(
                 left: 20,
-                child: Image.asset("lib/assets/keyboard.png",
+                child: Image.asset("lib/assets/images/keyboard.png",
                 fit: BoxFit.fill,
                 height: 50,)),
             Positioned(

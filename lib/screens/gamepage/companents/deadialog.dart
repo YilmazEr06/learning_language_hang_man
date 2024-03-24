@@ -27,7 +27,7 @@ class Deadialog extends StatelessWidget {
                 Positioned(
                   top: 20,
                   left: 10,
-                  child: Image.asset("lib/assets/stickman.png"),
+                  child: Image.asset("lib/assets/images/stickman.png"),
                 ),
                 const Positioned(
                   top: 20,
@@ -77,7 +77,7 @@ class Deadialog extends StatelessWidget {
                       Navigator.pop(context);
                                     
                     },
-                    child: Image.asset("lib/assets/save.png"),
+                    child: Image.asset("lib/assets/images/save.png"),
                   ),
                 )
               ],

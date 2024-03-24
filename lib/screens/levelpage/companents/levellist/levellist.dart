@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:hang_man/bloc/databloc.dart';
 import 'package:hang_man/screens/levelpage/companents/levellist/item.dart';
 
@@ -27,19 +27,22 @@ class Levellist extends StatelessWidget {
                 return const CircularProgressIndicator();
               } else if (snapshot.connectionState == ConnectionState.done) {
                 for (var i in snapshot.data!) {
-                  list.add(
-                    ListItem(
+                  list.add(ListItem(
                     i: i,
                     catagory: arguments[1]["catagory"],
                     id: arguments[0],
                   ));
                 }
-                return ListView.builder(
+                return AnimationLimiter(child: ListView.builder(
                   itemCount: list.length,
                   itemBuilder: (context, index) {
-                    return list[index];
+                    return AnimationConfiguration.staggeredList(
+                        position: index,
+                         child:  SlideAnimation(
+                          verticalOffset: 50.0,
+                          child: FadeInAnimation(child: list[index],)));
                   },
-                );
+                ));
               } else {
                 return const Text("Eror");
               }

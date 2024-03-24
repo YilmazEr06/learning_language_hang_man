@@ -12,6 +12,7 @@ import 'package:hang_man/screens/gamepage/companents/userinfobar.dart';
 
 
 
+
 class Gamepage extends StatefulWidget {
   const Gamepage({super.key});
   @override
@@ -106,7 +107,7 @@ class PageState extends State<Gamepaper> {
       Positioned(
         child: Image(
             height: MediaQuery.of(context).size.height * 0.65,
-            image: const AssetImage("lib/assets/page.png")),
+            image: const AssetImage("lib/assets/images/page.png")),
       ),
       Positioned(
         top: -85,

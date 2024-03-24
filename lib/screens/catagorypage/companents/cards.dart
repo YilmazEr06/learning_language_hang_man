@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:hang_man/bloc/databloc.dart';
 import 'package:hang_man/screens/catagorypage/companents/cardandcatagory.dart';
 
@@ -34,31 +35,41 @@ class _CardsState extends State<Cards> {
       future: Data().getlevelcards(widget.catagory),
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child:  CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else {
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else {
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            return SizedBox(
+              width: 500,
+              height: MediaQuery.of(context).size.height,
+              child: AnimationLimiter(
+                child: GridView.count(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 5.0,
-                  mainAxisSpacing: 5.0,
+                  children: List.generate(snapshot.data?.length ?? 0, (index) {
+                    return AnimationConfiguration.staggeredGrid(
+                      position: index,
+                      duration: const Duration(milliseconds: 375),
+                      columnCount: 2,
+                      child: ScaleAnimation(
+                        child: FadeInAnimation(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/selectlevelpage',
+                                  arguments: [
+                                    snapshot.data![index][0],
+                                    snapshot.data![index][1]
+                                  ]);
+                            },
+                            child: Cardclass(
+                              data: [snapshot.data![index]],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
                 ),
-                itemCount: snapshot.data?.length ?? 0,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context, '/selectlevelpage',
-                        arguments:[ snapshot.data![index][0],snapshot.data![index][1]]);
-                    },
-                    child: Cardclass(data: [snapshot.data![index]],));
-                },
               ),
             );
           }

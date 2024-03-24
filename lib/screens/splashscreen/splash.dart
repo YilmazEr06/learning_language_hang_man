@@ -28,7 +28,7 @@ class _MyHomePageState extends State<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
           children: [
             
-            Image.asset("lib/assets/stickman.png"),
+            Image.asset("lib/assets/images/stickman.png"),
              const Center(
                child: StrokeText(
                

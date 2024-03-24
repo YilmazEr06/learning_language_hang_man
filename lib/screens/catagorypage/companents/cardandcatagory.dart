@@ -9,8 +9,9 @@ class Cardclass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return Card(
-      color: Colors.grey,
+    return Container(
+      padding: const EdgeInsets.all(10),
+      color: const Color.fromARGB(0, 158, 158, 158),
       child: SizedBox(
         height: 175,
         width: 175,
@@ -18,7 +19,7 @@ class Cardclass extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               image: const DecorationImage(
-                  image: AssetImage("lib/assets/math.png"), fit: BoxFit.fill)),
+                  image: AssetImage("lib/assets/images/math.png"), fit: BoxFit.fill)),
           child:  Stack(
             children: [
               Positioned(

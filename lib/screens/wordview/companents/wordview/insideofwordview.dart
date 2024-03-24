@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:hang_man/models/word.dart';
 import 'package:stroke_text/stroke_text.dart';
 
@@ -18,72 +18,61 @@ class InsideofwordviewState extends State<Insideofwordview> {
   int i = 0;
   @override
   Widget build(BuildContext context) {
-    int max = widget.words.length;
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.only(top: 0),
-      child: Container(
-          color: const Color.fromARGB(0, 33, 149, 243),
-          width: MediaQuery.of(context).size.width * 0.95,
-          height: MediaQuery.of(context).size.height * 0.85,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Positioned(
-                  right: MediaQuery.of(context).size.width * 0.1,
-                  top: MediaQuery.of(context).size.height * 0.65,
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (i < max - 1) {
-                          i = i + 1;
-                        } else if (i == max - 1) {
-                          Navigator.pushReplacementNamed(context, '/gamepage',
+        padding: const EdgeInsets.only(top: 0),
+        child: SizedBox(
+            height: screenHeight * 0.6,
+            child: Flexible(
+                child: CardSwiper(
+              
+              cardsCount: widget.words.length,
+              allowedSwipeDirection:
+                  const AllowedSwipeDirection.only(left: true, right: true),
+              isLoop: false,
+              initialIndex: 0,
+              onEnd: () {
+                 Navigator.pushReplacementNamed(context, '/gamepage',
                               arguments: widget.words);
-                        }
-                      });
-                    },
-                    child: const Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      size: 75,
+              },
+              cardBuilder: (context, index, horizontalOffsetPercentage,
+                  verticalOffsetPercentage) {
+                return Center(
+                  child: Container(
+                    width: screenWidth * 0.8,
+                    height: screenHeight * 0.8,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: const Color.fromARGB(255, 191, 212, 208),
                     ),
-                  )),
-              Positioned(
-                  left: MediaQuery.of(context).size.width * 0.1,
-                  top: MediaQuery.of(context).size.height * 0.65,
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (0 < i) {
-                          i = i - 1;
-                        }
-                      });
-                    },
-                    child: const Icon(
-                      Icons.arrow_back_ios_rounded,
-                      size: 75,
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          widget.words[index].name.toUpperCase(),
+                          style: const TextStyle(
+                              fontSize: 50, fontFamily: "akayakanadaka"),
+                        ),
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            widget.words[index].description.toUpperCase(),
+                            style: const TextStyle(
+                                fontSize: 30, fontFamily: "akayakanadaka"),
+                          ),
+                        ),
+                      ],
                     ),
-                  )),
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.05,
-                child: StrokeText(
-                    text: widget.words[i].name,
-                    strokeWidth: 4,
-                    textStyle: const TextStyle(fontSize: 50)),
-              ),
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.25,
-                width: MediaQuery.of(context).size.width * 0.95,
-                child: Center(
-                  child: StrokeText(
-                      text: widget.words[i].description,
-                      strokeWidth: 4,
-                      textStyle: const TextStyle(
-                        fontSize: 50,
-                      )),
-                ),
-              ),
-            ],
-          )),
-    );
+                  ),
+                );
+              },
+            ))));
   }
 }

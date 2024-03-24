@@ -57,7 +57,7 @@ class UserinfobarState extends State<Userinfobar> {
                   left: 65,
                   top: 5,
                 ),
-                 Skorvalue(left: 120, top: 10,skor: scor),
+                Skorvalue(left: 120, top: 10, skor: scor),
                 Username(left: 70, top: 38, name: name),
                 x ? settingsicon(context, false) : settingsicon(context, true)
               ],
@@ -67,19 +67,17 @@ class UserinfobarState extends State<Userinfobar> {
   }
 
   Positioned settingsicon(BuildContext context, bool x) {
-   
-
     return Positioned(
         top: 8,
         right: 15,
         child: GestureDetector(
           onTap: () {
             Navigator.of(context).push(PageRouteBuilder(
-          opaque: false,
-          barrierDismissible: true,
-          pageBuilder: (BuildContext context, _, __) {
-            return const Settingdialog();
-          }));
+                opaque: false,
+                barrierDismissible: true,
+                pageBuilder: (BuildContext context, _, __) {
+                  return const Settingdialog();
+                }));
           },
           child: const Icon(
             Icons.settings_outlined,
@@ -126,7 +124,7 @@ class Skoricon extends StatelessWidget {
         child: Image(
             height: 35,
             fit: BoxFit.fill,
-            image: AssetImage("lib/assets/skor.png")));
+            image: AssetImage("lib/assets/images/skor.png")));
   }
 }
 
@@ -146,7 +144,7 @@ class Skorvalue extends StatelessWidget {
     return Positioned(
         left: left,
         top: top,
-        child:  StrokeText(
+        child: StrokeText(
           text: skor.toString(),
           strokeWidth: 2.5,
           strokeColor: Colors.black,
@@ -168,7 +166,7 @@ class Leadingicon extends StatelessWidget {
     return Positioned(
       left: left,
       top: top,
-      child: const  CircleAvatar(
+      child: const CircleAvatar(
         radius: 28,
         backgroundColor: Color.fromARGB(255, 240, 200, 21),
         child: Icon(

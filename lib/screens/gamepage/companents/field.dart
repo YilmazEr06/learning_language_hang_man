@@ -37,7 +37,7 @@ class FieldState extends State<Field> {
 
               ),
               Image.asset(
-                "lib/assets/underline.png",
+                "lib/assets/images/underline.png",
                 fit: BoxFit.fill,
                 scale: 1,
               )

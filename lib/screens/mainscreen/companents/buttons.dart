@@ -90,7 +90,7 @@ class _ButtonsState extends State<Buttons> with TickerProviderStateMixin {
               child:  Opacity(
                 opacity: opacity,
                 child: const Image(
-                  image:  AssetImage("lib/assets/start.png"),
+                  image:  AssetImage("lib/assets/images/start.png"),
                     
                 ),
               )),
@@ -104,7 +104,7 @@ class _ButtonsState extends State<Buttons> with TickerProviderStateMixin {
               child: Opacity(
                 opacity: opacity,
                 child: const Image(
-                  image: AssetImage("lib/assets/skortable.png"),
+                  image: AssetImage("lib/assets/images/skortable.png"),
                             
                 ),
               ))

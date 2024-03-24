@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hang_man/screens/catagorypage/companents/cards.dart';
 import 'package:hang_man/screens/catagorypage/companents/catagoryfield.dart';
-import 'package:hang_man/screens/gamepage/companents/userinfobar.dart';
+
+import 'package:hang_man/screens/mainscreen/companents/userinfobar/userinfobar.dart';
 
 
 

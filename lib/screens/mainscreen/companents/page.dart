@@ -28,19 +28,17 @@ class _PageimageState extends State<Pageimage> with TickerProviderStateMixin {
         opacity = _opacityanimation.value;
       });
     });
+    _opacityanimation = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(_controlleropacity);
 
-    Timer(const Duration(milliseconds: 1), () {
+    Timer(const Duration(microseconds: 1), () {
       animate();
     });
   }
 
   void animate() {
-    _opacityanimation = _controlleropacity.drive(
-      Tween<double>(
-        begin: 0,
-        end: 1,
-      ),
-    );
     _controlleropacity.reset();
     _controlleropacity.forward();
   }
@@ -54,7 +52,7 @@ class _PageimageState extends State<Pageimage> with TickerProviderStateMixin {
           color: const Color.fromARGB(0, 33, 149, 243),
           child: Stack(children: [
             const Positioned(
-                child: Image(image: AssetImage("lib/assets/page.png"))),
+                child: Image(image: AssetImage("lib/assets/images/page.png"))),
             Positioned(
               width: MediaQuery.of(context).size.width,
               top: 150,

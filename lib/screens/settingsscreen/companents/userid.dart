@@ -2,14 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-Padding userid(BuildContext context) {
+Widget userid(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
+      child: SizedBox(
+        width: MediaQuery.sizeOf(context).width,
+        child: Center(
+          child: Container(
             width: MediaQuery.sizeOf(context).width * 0.9,
             height: 70,
             decoration: const BoxDecoration(
@@ -36,7 +35,7 @@ Padding userid(BuildContext context) {
                               borderRadius: BorderRadius.circular(50)),
                           child: Center(
                               child: SvgPicture.asset(
-                            "lib/assets/icon _info_.svg",
+                            "lib/assets/images/icon _info_.svg",
                             fit: BoxFit.fill,
                             height: 40,
                           ))),
@@ -72,7 +71,7 @@ Padding userid(BuildContext context) {
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

@@ -38,7 +38,7 @@ class SlidersoundState extends State<Slidersound> {
           alignment: Alignment.centerRight,
           children: [
             Positioned(
-                left: 20, child: SvgPicture.asset("lib/assets/headphones.svg")),
+                left: 20, child: SvgPicture.asset("lib/assets/images/headphones.svg")),
             Positioned(
               child: SizedBox(
                 width: MediaQuery.sizeOf(context).width * 0.60,

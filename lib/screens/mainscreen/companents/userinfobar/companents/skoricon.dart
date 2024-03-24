@@ -16,6 +16,6 @@ class Skoricon extends StatelessWidget {
         child: Image(
             height: 35,
             fit: BoxFit.fill,
-            image: AssetImage("lib/assets/skor.png")));
+            image: AssetImage("lib/assets/images/skor.png")));
   }
 }

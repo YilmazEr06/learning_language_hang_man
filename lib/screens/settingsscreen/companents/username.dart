@@ -1,20 +1,31 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Username extends StatelessWidget {
+class Username extends StatefulWidget {
   const Username({
     super.key,
   });
 
   @override
+  State<Username> createState() => _UsernameState();
+}
+
+class _UsernameState extends State<Username> with TickerProviderStateMixin{
+
+
+  
+
+ 
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
+      child: SizedBox(
+        width: MediaQuery.sizeOf(context).width ,
+        child: Center(
+          child: Container(
             width: MediaQuery.sizeOf(context).width * 0.9,
             height: 70,
             decoration: const BoxDecoration(
@@ -31,20 +42,16 @@ class Username extends StatelessWidget {
                 Positioned(
                     left: 10,
                     child: Padding(
-                      padding:
-                         const EdgeInsets.symmetric(horizontal: 2.0, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 2.0, vertical: 5),
                       child: Container(
                           width: 60,
                           height: 60,
                           decoration: BoxDecoration(
                               color: const Color.fromARGB(57, 68, 67, 67),
                               borderRadius: BorderRadius.circular(50)),
-                          child: Center(
-                              child: SvgPicture.asset(
-                            "lib/assets/person.svg",
-                            fit: BoxFit.fill,
-                            height: 40,
-                          ))),
+                          child: const  Center(
+                              child: Icon(Icons.verified_user_outlined))),
                     )),
                 Positioned(
                     top: 7,
@@ -56,19 +63,18 @@ class Username extends StatelessWidget {
                             color: const Color.fromARGB(31, 60, 61, 62),
                             borderRadius: BorderRadius.circular(15)),
                         child: const TextField(
-                          decoration:  InputDecoration(
-                          
+                          decoration: InputDecoration(
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                   color: Colors.greenAccent, width: 5.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              borderSide:
-                                  BorderSide(
-                                    color: Color.fromARGB(12, 56, 54, 54),
-                                   width: 4.0,
-                                  ),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(12, 56, 54, 54),
+                                width: 4.0,
+                              ),
                             ),
                             hintText: '#oldusername',
                           ),
@@ -76,7 +82,7 @@ class Username extends StatelessWidget {
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

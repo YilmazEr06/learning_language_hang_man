@@ -24,14 +24,14 @@ class BuildadamState extends State<Buildadam> {
           child: Image(
             color: (widget.sayac>4)?const Color.fromARGB(255, 0, 0, 0):const Color.fromARGB(0, 33, 149, 243),
             height: MediaQuery.of(context).size.height * 0.65,
-            image: const AssetImage("lib/assets/Line6.png"),
+            image: const AssetImage("lib/assets/images/teladam/Line6.png"),
           ),
         ),
         Positioned(
           child: Image(
             color: const Color.fromARGB(0, 33, 149, 243),
             height: MediaQuery.of(context).size.height * 0.65,
-            image: const AssetImage("lib/assets/Line6.png"),
+            image: const AssetImage("lib/assets/images/teladam/Line6.png"),
           ),
         ),
         Positioned(
@@ -40,7 +40,7 @@ class BuildadamState extends State<Buildadam> {
           child: Image(
             color: (widget.sayac>5)?const Color.fromARGB(255, 0, 0, 0):const Color.fromARGB(0, 33, 149, 243),
             height: MediaQuery.of(context).size.height * 0.65,
-            image: const AssetImage("lib/assets/Line5.png"),
+            image: const AssetImage("lib/assets/images/teladam/Line5.png"),
           ),
         ),
         Positioned(
@@ -49,7 +49,7 @@ class BuildadamState extends State<Buildadam> {
           child: Image(
             color: (widget.sayac>1)?const Color.fromARGB(255, 0, 0, 0):const Color.fromARGB(0, 33, 149, 243),
             height: MediaQuery.of(context).size.height * 0.65,
-            image: const AssetImage("lib/assets/Line4.png"),
+            image: const AssetImage("lib/assets/images/teladam/Line4.png"),
           ),
         ),
         Positioned(
@@ -58,7 +58,7 @@ class BuildadamState extends State<Buildadam> {
           child: Image(
             color: (widget.sayac>2)?const Color.fromARGB(255, 0, 0, 0):const Color.fromARGB(0, 33, 149, 243),
             height: MediaQuery.of(context).size.height * 0.65,
-            image: const AssetImage("lib/assets/Line3.png"),
+            image: const AssetImage("lib/assets/images/teladam/Line3.png"),
           ),
         ),
         Positioned(
@@ -67,7 +67,7 @@ class BuildadamState extends State<Buildadam> {
           child: Image(
             color: (widget.sayac>3)?const Color.fromARGB(255, 0, 0, 0):const Color.fromARGB(0, 33, 149, 243),
             height: MediaQuery.of(context).size.height * 0.65,
-            image: const AssetImage("lib/assets/Line2.png"),
+            image: const AssetImage("lib/assets/images/teladam/Line2.png"),
           ),
         ),
         Positioned(
@@ -76,7 +76,7 @@ class BuildadamState extends State<Buildadam> {
           child: Image(
             color: (widget.sayac>0)?const Color.fromARGB(255, 0, 0, 0):const Color.fromARGB(0, 33, 149, 243),
             height: MediaQuery.of(context).size.height * 0.65,
-            image: const AssetImage("lib/assets/kelle.png"),
+            image: const AssetImage("lib/assets/images/teladam/kelle.png"),
           ),
         ),
       ],

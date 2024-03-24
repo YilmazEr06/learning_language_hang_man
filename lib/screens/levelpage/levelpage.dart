@@ -10,7 +10,6 @@ class Levelpage extends StatefulWidget {
 
 class _MyHomePageState extends State<Levelpage> {
   List arguments = [];
-  List levels = [];
   @override
   @override
   Widget build(BuildContext context) {

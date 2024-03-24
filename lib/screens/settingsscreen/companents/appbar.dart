@@ -1,10 +1,18 @@
+
+
 import 'package:flutter/cupertino.dart';
 
-class Appbar extends StatelessWidget {
+class Appbar extends StatefulWidget {
   const Appbar({
     super.key,
   });
 
+  @override
+  State<Appbar> createState() => _AppbarState();
+}
+
+class _AppbarState extends State<Appbar> with TickerProviderStateMixin {
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,11 +30,9 @@ class Appbar extends StatelessWidget {
       alignment: const AlignmentDirectional(0, 0),
       child: const Stack(
         children: [
-          Text( 
-            'AYARLAR',style: TextStyle(
-              fontFamily: "akayakanadaka",
-              fontSize:50
-            ),
+          Text(
+            'AYARLAR',
+            style: TextStyle(fontFamily: "akayakanadaka", fontSize: 50),
           ),
         ],
       ),
