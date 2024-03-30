@@ -26,14 +26,14 @@ class _MyHomePageState extends State<Scorpage> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           color: const Color.fromARGB(255, 245, 233, 146),
-          child:  Column(children: [
-            const SizedBox(
-              height: 15,
-            ),
-            const ScorInfoBar(),
-            Catagoryrow(callback: changecategory,currentcatagory: category),
-            Userlistcolumn(catagory: category,)
-          ]),
+          child:  SafeArea(
+            child: Column(children: [
+              
+              const ScorInfoBar(),
+              Catagoryrow(callback: changecategory,currentcatagory: category),
+              Userlistcolumn(catagory: category,)
+            ]),
+          ),
         ),
       ),
     ));

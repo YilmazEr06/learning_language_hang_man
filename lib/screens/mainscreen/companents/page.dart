@@ -46,9 +46,11 @@ class _PageimageState extends State<Pageimage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Positioned(
+        
         width: MediaQuery.of(context).size.width,
         bottom: MediaQuery.of(context).size.height * 0.22,
         child: Container(
+          alignment: Alignment.center,
           color: const Color.fromARGB(0, 33, 149, 243),
           child: Stack(children: [
             const Positioned(

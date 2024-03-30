@@ -22,7 +22,7 @@ class Listitemwinner extends StatelessWidget {
             Positioned(
                 left: 15,
                 child: Image(
-                  image: AssetImage("lib/assets/tac.png"),
+                  image: AssetImage("lib/assets/images/tac.png"),
                   height: 50,
                   fit: BoxFit.fill,
                 )),
@@ -30,7 +30,7 @@ class Listitemwinner extends StatelessWidget {
                 left: 60,
                 top: 20,
                 child: Image(
-                  image: AssetImage("lib/assets/kupa.png"),
+                  image: AssetImage("lib/assets/images/kupa.png"),
                   fit: BoxFit.fill,
                   height: 30,
                 )),

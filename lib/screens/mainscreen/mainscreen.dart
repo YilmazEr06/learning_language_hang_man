@@ -38,8 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
               color: const Color.fromARGB(255, 245, 233, 146),
               child: const SafeArea(
                 maintainBottomViewPadding: true,
-                child: Stack(children: [
-                  Userinfobar(),
+                child: Stack(
+                  children: [
+                  Positioned(child: Userinfobar()),
                   Pageimage(),
                   Buttons(),
                 ]),

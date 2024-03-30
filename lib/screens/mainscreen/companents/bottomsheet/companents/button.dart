@@ -28,8 +28,7 @@ class Button extends StatelessWidget {
                         color: Color.fromARGB(255, 244, 155, 54))))),
         onPressed: () {
           if (_formKey.currentState!.validate()) {
-            Sharedpreferences().setusername(controller.text).then((value) {
-              Sharedpreferences().setuserrandomid();
+            Sharedpreferences().createuserinfo(controller.text).then((value) {
               Navigator.pop(context);
               Timer(const Duration(milliseconds: 5), () {
                 Navigator.pushReplacementNamed(context, "/main");

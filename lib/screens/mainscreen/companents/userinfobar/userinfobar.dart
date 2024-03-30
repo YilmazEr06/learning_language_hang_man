@@ -6,7 +6,6 @@ import 'package:hang_man/screens/mainscreen/companents/userinfobar/companents/sk
 import 'package:hang_man/screens/mainscreen/companents/userinfobar/companents/skorvalue.dart';
 import 'package:hang_man/screens/mainscreen/companents/userinfobar/companents/username.dart';
 
-
 class Userinfobar extends StatefulWidget {
   const Userinfobar({super.key});
 
@@ -22,8 +21,6 @@ class UserinfobarState extends State<Userinfobar>
   int uid = 12345;
   int level = 0;
 
-  
-
   @override
   void initState() {
     super.initState();
@@ -31,6 +28,7 @@ class UserinfobarState extends State<Userinfobar>
       x = Dbhelper().dbstatus;
       Data().getUserInfo().then((value) {
         setState(() {
+          print(value);
           name = value["Users"]["username"];
           scor = value["Users"]["scor"];
           uid = value["Users"]["uid"];
@@ -38,45 +36,33 @@ class UserinfobarState extends State<Userinfobar>
         });
       });
     });
-
- 
-
-
-
   }
-
-
-  
-
- 
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-              width: MediaQuery.of(context).size.width * 0.95,
-              height: 70,
-              decoration: const BoxDecoration(
-                color: Color.fromRGBO(255, 247, 213, 1),
-                borderRadius: BorderRadius.all(Radius.elliptical(64, 64)),
-              ),
-              child: Stack(
-                children: [
-                  const Leadingicon(left: 10, top: 7.5),
-                  const Skoricon(
-                    left: 65,
-                    top: 5,
-                  ),
-                  Skorvalue(left: 120, top: 10, skor: scor),
-                  Username(left: 70, top: 38, name: name),
-                  x ? settingsicon(context, false) : settingsicon(context, true)
-                ],
-              )),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+            width: MediaQuery.of(context).size.width * 0.95,
+            height: 70,
+            decoration: const BoxDecoration(
+              color: Color.fromRGBO(255, 247, 213, 1),
+              borderRadius: BorderRadius.all(Radius.elliptical(64, 64)),
+            ),
+            child: Stack(
+              children: [
+                const Leadingicon(left: 10, top: 7.5),
+                const Skoricon(
+                  left: 65,
+                  top: 5,
+                ),
+                Skorvalue(left: 120, top: 10, skor: scor),
+                Username(left: 70, top: 38, name: name),
+                x ? settingsicon(context, false) : settingsicon(context, true)
+              ],
+            )),
+      ],
     );
   }
 

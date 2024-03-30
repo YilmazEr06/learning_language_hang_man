@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hang_man/models/usermodelforscortable.dart';
 
 class Firebasehlp {
   bool a = false;
@@ -81,5 +82,18 @@ class Firebasehlp {
 
   logout() async {
     await FirebaseAuth.instance.signOut();
+  }
+
+  newuser(UserModel user) async {
+    db.collection("users").add({
+      "Users": {
+        "username": user.username,
+        "scor": user.scor,
+        "uid": user.uid,
+        "level": user.level,
+      },
+    }).then((value) {
+      print(value);
+    });
   }
 }

@@ -1,28 +1,25 @@
-
-class UserModelForSkor {
+class UserModel {
   final String username;
   final int scor;
   final int level;
   final String uid;
 
-  UserModelForSkor({
+  UserModel({
     required this.uid,
     required this.username,
     required this.scor,
     required this.level,
   });
 
-
-  factory UserModelForSkor.defaultuser() {
-    return UserModelForSkor(
+  factory UserModel.defaultuser() {
+    return UserModel(
       uid: '123456',
-       username: 'Radrescan', 
-       scor: 0, 
-       level: 0,
+      username: 'Radrescan',
+      scor: 0,
+      level: 1,
     );
   }
 
-  
   //
   // factory CardModel.fromFirestore(
   //   DocumentSnapshot<Map<String, dynamic>> snapshot,

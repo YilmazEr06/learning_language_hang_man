@@ -12,13 +12,13 @@ class ScorInfoBar extends StatelessWidget {
     double screenwidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(
-        top: 10,
+        top: 0,
         left: 10,
         right: 10,
       ),
       child: Hero(
           tag: "hero-tag",
-          child: // Figma Flutter Generator Group12Widget - GROUP
+          child: 
               SizedBox(
                   width: 381,
                   height: 64,
@@ -61,7 +61,7 @@ class ScorInfoBar extends StatelessWidget {
                       child: const Image(
                           height: 35,
                           fit: BoxFit.fill,
-                          image: AssetImage("lib/assets/adam1.png")),
+                          image: AssetImage("lib/assets/images/adam/adam1.png")),
                     ),
                     Positioned(
                       top: imagetop,
@@ -69,7 +69,7 @@ class ScorInfoBar extends StatelessWidget {
                       child: const Image(
                           height: 35,
                           fit: BoxFit.fill,
-                          image: AssetImage("lib/assets/adam1.png")),
+                          image: AssetImage("lib/assets/images/adam/adam1.png")),
                     ),
                     Positioned(
                       top: imagetop,
@@ -77,7 +77,7 @@ class ScorInfoBar extends StatelessWidget {
                       child: const Image(
                           height: 35,
                           fit: BoxFit.fill,
-                          image: AssetImage("lib/assets/adam2.png")),
+                          image: AssetImage("lib/assets/images/adam/adam2.png")),
                     ),
                     Positioned(
                       top: imagetop,
@@ -85,7 +85,7 @@ class ScorInfoBar extends StatelessWidget {
                       child: const Image(
                           height: 35,
                           fit: BoxFit.fill,
-                          image: AssetImage("lib/assets/adam2.png")),
+                          image: AssetImage("lib/assets/images/adam/adam2.png")),
                     ),
                     Positioned(
                       top: imagetop,
@@ -93,7 +93,7 @@ class ScorInfoBar extends StatelessWidget {
                       child: const Image(
                           height: 35,
                           fit: BoxFit.fill,
-                          image: AssetImage("lib/assets/adam4.png")),
+                          image: AssetImage("lib/assets/images/adam/adam4.png")),
                     ),
                     Positioned(
                       top: imagetop,
@@ -101,7 +101,7 @@ class ScorInfoBar extends StatelessWidget {
                       child: const Image(
                           height: 35,
                           fit: BoxFit.fill,
-                          image: AssetImage("lib/assets/adam4.png")),
+                          image: AssetImage("lib/assets/images/adam/adam4.png")),
                     ),
                     Positioned(
                       top: imagetop,
@@ -109,7 +109,7 @@ class ScorInfoBar extends StatelessWidget {
                       child: const Image(
                           height: 35,
                           fit: BoxFit.fill,
-                          image: AssetImage("lib/assets/adam3.png")),
+                          image: AssetImage("lib/assets/images/adam/adam3.png")),
                     ),
                     Positioned(
                       top: imagetop,
@@ -117,13 +117,13 @@ class ScorInfoBar extends StatelessWidget {
                       child: const Image(
                           height: 35,
                           fit: BoxFit.fill,
-                          image: AssetImage("lib/assets/adam3.png")),
+                          image: AssetImage("lib/assets/images/adam/adam3.png")),
                     ),
                     const Positioned(
                       child: Image(
                           height: 50,
                           fit: BoxFit.fill,
-                          image: AssetImage("lib/assets/skor.png")),
+                          image: AssetImage("lib/assets/images/skor.png")),
                     ),
                   ]))),
     );

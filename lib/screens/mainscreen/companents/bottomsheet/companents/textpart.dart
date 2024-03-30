@@ -11,7 +11,7 @@ class Textpart extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          "lib/assets/stickman.png",
+          "lib/assets/images/stickman.png",
           fit: BoxFit.fill,
           scale: 1.5,
         ),
