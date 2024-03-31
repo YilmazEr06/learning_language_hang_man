@@ -1,8 +1,8 @@
 class UserModel {
-  final String username;
-  final int scor;
-  final int level;
-  final String uid;
+   String username;
+   int scor;
+   int level;
+   String uid;
 
   UserModel({
     required this.uid,
@@ -10,7 +10,16 @@ class UserModel {
     required this.scor,
     required this.level,
   });
-
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    print("object");
+    print(json);
+    return UserModel(
+      uid: json["Users"]['uid'],
+      username: json["Users"]['username'],
+      scor: json["Users"]['scor'],
+      level: json["Users"]['level'],
+    );
+  }
   factory UserModel.defaultuser() {
     return UserModel(
       uid: '123456',

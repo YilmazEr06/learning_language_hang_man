@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hang_man/models/usermodelforscortable.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class Listitemwinner extends StatelessWidget {
   const Listitemwinner({
-    super.key,
+    super.key, required this.user,
   });
-
+  final UserModel user;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,17 +17,17 @@ class Listitemwinner extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: const Color.fromARGB(255, 250, 222, 66)),
-        child: const Stack(
+        child:  Stack(
           alignment: Alignment.center,
           children: [
-            Positioned(
+            const Positioned(
                 left: 15,
                 child: Image(
                   image: AssetImage("lib/assets/images/tac.png"),
                   height: 50,
                   fit: BoxFit.fill,
                 )),
-            Positioned(
+            const Positioned(
                 left: 60,
                 top: 20,
                 child: Image(
@@ -38,16 +39,16 @@ class Listitemwinner extends StatelessWidget {
                 top: 25,
                 left: 90,
                 child: StrokeText(
-                  text: "123456",
-                  textStyle: TextStyle(fontSize: 20),
+                  text: user.scor.toString(),
+                  textStyle: const TextStyle(fontSize: 20),
                   strokeWidth: 2,
                 )),
             Positioned(
                 top: 4,
                 left: 70,
                 child: StrokeText(
-                  text: "Radrescan2003",
-                  textStyle: TextStyle(fontSize: 20),
+                  text: user.username,
+                  textStyle: const TextStyle(fontSize: 20),
                   strokeWidth: 4,
                 ))
           ],

@@ -35,6 +35,18 @@ class Firebasehlp {
     return levels;
   }
 
+  Future<List> getuserlist() async {
+    List<UserModel> users = [];
+    final docRef = db.collection("users");
+
+    var x = await docRef.get();
+
+    for (var i in x.docs) {
+      users.add(UserModel.fromJson(i.data()));
+    }
+    return users;
+  }
+
   Future<List> getwords(String id, String catagory, String lvl) async {
     List<Map> words = [];
     final docRef = db

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:hang_man/bloc/databloc.dart';
 
@@ -21,13 +22,13 @@ class Catagoryrow extends StatelessWidget {
           future: Data().getcatagory(),
           builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return const Center(child:  CircularProgressIndicator());
             } else {
               if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else {
                 var a = snapshot.data;
-                List<Widget> heads = [];
+                List<Widget> heads = [const SizedBox(width: 10,)];
                 for (var b in a!) {
                   heads.add(GestureDetector(
                     onTap: () {
@@ -38,10 +39,20 @@ class Catagoryrow extends StatelessWidget {
                         : Catagoryitem(text: b,isselected: false),
                   ));
                 }
-                return SingleChildScrollView(
+                return    SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: heads,
+                    child: AnimationLimiter(
+                      child: Row(
+                        children: AnimationConfiguration.toStaggeredList(
+                          children: heads,
+                          childAnimationBuilder: (p0) {
+                            return SlideAnimation(
+                              horizontalOffset: 1,
+                              child: FadeInAnimation(child: p0),
+                            );
+                          },
+                        ),
+                      ),
                     ));
               }
             }
@@ -65,12 +76,12 @@ class Catagoryitem extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            color: isselected? const Color.fromARGB(255, 241, 190, 24): const Color.fromARGB(255, 251, 219, 113),
+            color: isselected? const Color.fromARGB(255, 212, 169, 25): const Color.fromARGB(136, 228, 187, 53),
             borderRadius: BorderRadius.circular(20)),
         height: 35,
         width: 100,
         child: Text(
-          text,
+          text.toUpperCase(),
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

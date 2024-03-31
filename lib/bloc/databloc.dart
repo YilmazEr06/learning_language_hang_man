@@ -61,18 +61,14 @@ class Data {
   }
 
   Future<List> getcorlist(String a) async {
-    if (a == "Hepsi") {
-      List cards = [
-        UserModel.defaultuser(),
-        UserModel.defaultuser(),
-        UserModel.defaultuser(),
-        UserModel.defaultuser(),
-        UserModel.defaultuser(),
-      ];
-      return cards;
+    Firebasehlp().getuserlist();
+    if (a == "hepsi") {
+      
+     
+      return Firebasehlp().getuserlist();
     } else {
       var x = await Firebasehlp().getcards("a");
-      return [x];
+      return x;
     }
   }
 
