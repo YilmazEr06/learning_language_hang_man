@@ -16,7 +16,7 @@ class UserModel {
     return UserModel(
       uid: json["Users"]['uid'],
       username: json["Users"]['username'],
-      scor: json["Users"]['scor'],
+      scor: json["Users"]['scors']["hepsi"],
       level: json["Users"]['level'],
     );
   }

@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:hang_man/bloc/databloc.dart';
 import 'package:hang_man/models/usermodelforscortable.dart';
 
 class Firebasehlp {
@@ -16,6 +18,15 @@ class Firebasehlp {
     }
 
     return catagories;
+  }
+
+  Future<String> getcatagoryimageurl() async {
+    final ref = FirebaseStorage.instance.ref().child('testimage');
+
+    var url = await ref.getDownloadURL();
+    print(url);
+
+    return url;
   }
 
   Future<List> getlevels(String id, String catagory) async {
@@ -92,20 +103,38 @@ class Firebasehlp {
     return cards;
   }
 
+  Future<String> GetImageUrl(String root) async {
+    final storage = FirebaseStorage.instance;
+    final ref = storage.ref().child(root);
+    final url = await ref.getDownloadURL();
+    return url;
+  }
+
   logout() async {
     await FirebaseAuth.instance.signOut();
   }
 
-  newuser(UserModel user) async {
-    db.collection("users").add({
-      "Users": {
-        "username": user.username,
-        "scor": user.scor,
-        "uid": user.uid,
-        "level": user.level,
-      },
-    }).then((value) {
-      print(value);
-    });
+  Future<void> newuser(UserModel user) async {
+  Map<String, dynamic> details = {};
+
+  details["Users"] = {}; // Initialize nested map for "Users"
+  details["Users"]["scors"] = {};
+  // Set user details
+  details["Users"]["username"] = user.username;
+  details["Users"]["uid"] = user.uid;
+  details["Users"]["level"] = user.level;
+  details["Users"]["avatar"] = "avatar1";
+
+
+  // Get dynamic fields from database
+  List<dynamic> categories = await Data().getcatagory();
+
+  // Add dynamic fields to the "Users" map
+  for (var element in categories) {
+    details["Users"]["scors"][element] = 0;
   }
+
+  // Add user details to the database collection
+  await db.collection("users").add(details);
+}
 }
