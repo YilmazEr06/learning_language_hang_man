@@ -54,7 +54,12 @@ class Sharedpreferences {
         if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
           print('connected');
           Data().addnewuser(UserModel(
-              uid: value.toString(), username: name, scor: 0, level: 1));
+              uid: value.toString(), username: name, scor: {
+        "hepsi": 0,
+        "sanat": 0,
+        "bilim": 0,
+
+      }, level: 1));
         }
       } on SocketException catch (_) {
         print('not connected');

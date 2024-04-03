@@ -15,7 +15,7 @@ class Userlistcolumn extends StatelessWidget {
       color: const Color.fromARGB(0, 33, 149, 243),
       height: MediaQuery.of(context).size.height * 0.8,
       child: FutureBuilder(
-        future: Data().getcorlist(catagory),
+        future: Data().getcorlist("hepsi"),
         builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -23,14 +23,18 @@ class Userlistcolumn extends StatelessWidget {
             if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
-              var a = snapshot.data;
+              var list = snapshot.data;
+             
+              list!.sort((a, b) => b.scor[catagory].compareTo(a.scor[catagory]));
+             
+
               List<Widget> heads = [];
-              for (var i in a!) {
+
+              for (var i in list) {
                 heads.add(GestureDetector(
-                  onTap: () {
-                    // skor tablosundaki itemlere tıklandığında ne olacağı
+                  onTap: () {  // skor tablosundaki itemlere tıklandığında ne olacağı
                   },
-                  child:  Listitemwinner(user: i),
+                  child: Listitemwinner(user: i,category: catagory,sira: heads.length+1,),
                 ));
               }
               return SingleChildScrollView(

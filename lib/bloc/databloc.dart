@@ -64,7 +64,6 @@ class Data {
     Firebasehlp().getuserlist();
     if (a == "hepsi") {
       
-     
       return Firebasehlp().getuserlist();
     } else {
       var x = await Firebasehlp().getcards("a");

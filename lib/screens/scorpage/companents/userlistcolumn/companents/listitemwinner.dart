@@ -4,11 +4,17 @@ import 'package:stroke_text/stroke_text.dart';
 
 class Listitemwinner extends StatelessWidget {
   const Listitemwinner({
-    super.key, required this.user,
+    super.key,
+    required this.user,
+    required this.category,
+    required this.sira,
   });
   final UserModel user;
+  final String category;
+  final int sira;
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Container(
@@ -17,7 +23,7 @@ class Listitemwinner extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: const Color.fromARGB(255, 250, 222, 66)),
-        child:  Stack(
+        child: Stack(
           alignment: Alignment.center,
           children: [
             const Positioned(
@@ -39,7 +45,7 @@ class Listitemwinner extends StatelessWidget {
                 top: 25,
                 left: 90,
                 child: StrokeText(
-                  text: user.scor.toString(),
+                  text: user.scor[category].toString(),
                   textStyle: const TextStyle(fontSize: 20),
                   strokeWidth: 2,
                 )),
