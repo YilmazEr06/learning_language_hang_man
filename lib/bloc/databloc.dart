@@ -11,6 +11,7 @@ class Data {
     int? id = sp.getInt("id");
     int? scor = sp.getInt("scor");
     int? level = sp.getInt("level");
+    String? avatar = sp.getString("avatar");
     Map<String, dynamic> userInfo;
 
     if (username != null && username.isNotEmpty) {
@@ -21,6 +22,7 @@ class Data {
           "scor": scor,
           "uid": id,
           "level": level,
+          "avatar": avatar
         },
       };
     }else{
@@ -31,6 +33,7 @@ class Data {
           "scor": 0,
           "uid": 0000,
           "level": 0,
+          "avatar": avatar
         },
       };
     }
@@ -77,10 +80,21 @@ class Data {
     Firebasehlp().newuser(user);
   }
 
-  changeusermame(String newname) async {
+ Future changeusermame(String newname) async {
     Sharedpreferences().setusername(newname).then((value) {
        Sharedpreferences().getfirebasedocumentid().then((value) {
           Firebasehlp().changeusername(value ,newname);
+       });
+    },);
+      
+  
+  }
+  
+ Future changeuseravatar(String newavatar ) async {
+    Sharedpreferences().setuseravatar(newavatar).then((value) {
+       Sharedpreferences().getfirebasedocumentid().then((value) {
+          Firebasehlp().changeuseravatar(value ,newavatar);
+          
        });
     },);
       

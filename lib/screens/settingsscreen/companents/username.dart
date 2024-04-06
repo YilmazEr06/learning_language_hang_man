@@ -6,9 +6,10 @@ import 'package:hang_man/bloc/databloc.dart';
 
 class Username extends StatefulWidget {
   const Username({
-    super.key, required this.username,
+    super.key, required this.username, required this.refresh,
   });
    final String username;
+   final VoidCallback refresh;
   @override
   State<Username> createState() => _UsernameState();
 }
@@ -65,7 +66,8 @@ class _UsernameState extends State<Username> {
                             borderRadius: BorderRadius.circular(15)),
                         child:  TextField(
                           onSubmitted: (value) {
-                             Data().changeusermame(value);
+                             Data().changeusermame(value).then((value) => widget.refresh());
+                            
                           },
                           decoration: InputDecoration(
                             focusedBorder: const OutlineInputBorder(

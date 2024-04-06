@@ -39,8 +39,8 @@ class MyApp extends StatelessWidget {
       '/wordview':(context)=>const Wordviewpage(),
       '/deaddialog':(context)=>Deadialog(),
       '/main':(context)=>const MyHomePage(),
-      '/settings':(context)=>const Settings(),
-      '/avatarsettings':(context)=>const Changeavatar()
+
+   
       
     },
       title: 'Flutter Demo',

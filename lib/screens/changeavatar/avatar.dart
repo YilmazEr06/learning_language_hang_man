@@ -1,13 +1,14 @@
 import 'dart:async';
 
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+
 import 'package:hang_man/bloc/databloc.dart';
 import 'package:hang_man/screens/settingsscreen/companents/appbar.dart';
 
-
 class Changeavatar extends StatefulWidget {
-  const Changeavatar({super.key});
-
+  const Changeavatar({super.key, required this.refresh});
+  final VoidCallback refresh;
   @override
   State<Changeavatar> createState() => _HomePageWidgetState();
 }
@@ -22,7 +23,8 @@ class _HomePageWidgetState extends State<Changeavatar>
 
   late Animation _opacityanimation;
   late AnimationController _controlleropacity;
-
+  SwiperController controller = SwiperController();
+  String currentavatar = "";
   @override
   void initState() {
     super.initState();
@@ -91,14 +93,46 @@ class _HomePageWidgetState extends State<Changeavatar>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Appbar(text: "avatar"),
+                const SizedBox(
+                  height: 30,
+                ),
                 Opacity(
                   opacity: opacity,
-                  child: const Column(
+                  child: Column(
                     children: [
-                      Togglebuttons(),
+                      SizedBox(
+                          width: 500,
+                          height: 500,
+                          child: Swiper(
+                            itemBuilder: (BuildContext context, int index) {
+                              currentavatar = (index).toString();
+                              return Image.asset(
+                                  "lib/assets/images/avatarlar/${(index + 1).toString()}.png");
+                            },
+                            itemCount: 6,
+                            viewportFraction: 0.6,
+                            scale: 0.5,
+                            controller: controller,
+                          )),
                     ],
                   ),
                 ),
+                const SizedBox(
+                  height: 50,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Data()
+                        .changeuseravatar(
+                      currentavatar,
+                    )
+                        .then((value) {
+                      widget.refresh();
+                      Navigator.pop(context);
+                    });
+                  },
+                  child: Image.asset("lib/assets/images/degistir.png"),
+                )
               ],
             ),
           ),
@@ -116,16 +150,13 @@ class Togglebuttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ToggleButtons(
-      
       borderColor: Colors.black,
       fillColor: Colors.grey,
       borderWidth: 2,
       selectedBorderColor: Colors.black,
       selectedColor: Colors.white,
       borderRadius: BorderRadius.circular(15),
-      onPressed: (int index) {
-                         
-      },
+      onPressed: (int index) {},
       isSelected: const [true, false],
       children: const <Widget>[
         Padding(

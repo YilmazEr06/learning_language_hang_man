@@ -5,6 +5,7 @@ import 'package:hang_man/screens/mainscreen/companents/userinfobar/companents/le
 import 'package:hang_man/screens/mainscreen/companents/userinfobar/companents/skoricon.dart';
 import 'package:hang_man/screens/mainscreen/companents/userinfobar/companents/skorvalue.dart';
 import 'package:hang_man/screens/mainscreen/companents/userinfobar/companents/username.dart';
+import 'package:hang_man/screens/settingsscreen/settings.dart';
 
 class Userinfobar extends StatefulWidget {
   const Userinfobar({super.key});
@@ -24,16 +25,17 @@ class UserinfobarState extends State<Userinfobar>
   @override
   void initState() {
     super.initState();
-    setState(() {
-      x = Dbhelper().dbstatus;
-      Data().getUserInfo().then((value) {
-        setState(() {
-          print(value);
-          name = value["Users"]["username"];
-          scor = value["Users"]["scor"];
-          uid = value["Users"]["uid"];
-          level = value["Users"]["level"];
-        });
+    getdata();
+  }
+
+  getdata() {
+    x = Dbhelper().dbstatus;
+    Data().getUserInfo().then((value) {
+      setState(() {
+        name = value["Users"]["username"];
+        scor = value["Users"]["scor"];
+        uid = value["Users"]["uid"];
+        level = value["Users"]["level"];
       });
     });
   }
@@ -72,7 +74,15 @@ class UserinfobarState extends State<Userinfobar>
         right: 15,
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).pushNamed('/settings');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Settings(
+                        refresh: () {
+                          getdata();
+                        },
+                      )),
+            );
           },
           child: const Icon(
             Icons.settings_outlined,

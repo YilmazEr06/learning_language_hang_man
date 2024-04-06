@@ -31,6 +31,16 @@ class Firebasehlp {
       print(value1.data());
     });
   }
+  changeuseravatar(String? value, String newavatar) async {
+    final docRef = db.collection("users");
+
+    docRef.doc(value).get().then((value1) {
+      var map = value1.data();
+      map!["Users"]["avatar"] = newavatar;
+      docRef.doc(value).update(map);
+      print(value1.data());
+    });
+  }
 
   Future<String> getcatagoryimageurl() async {
     final ref = FirebaseStorage.instance.ref().child('testimage');

@@ -38,6 +38,11 @@ class Sharedpreferences {
     prefs = await SharedPreferences.getInstance();
     await prefs!.setInt('scor', scor);
   }
+  Future setuseravatar(String avatar) async {
+    prefs = await SharedPreferences.getInstance();
+    await prefs!.setString("avatar", avatar);
+  }
+  
 
   Future setuserlevel(int level) async {
     prefs = await SharedPreferences.getInstance();

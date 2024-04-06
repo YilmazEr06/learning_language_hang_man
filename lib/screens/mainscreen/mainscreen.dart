@@ -24,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //kullanıcı adı yoksa kullanıcı adı istenmesi
     islogin();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

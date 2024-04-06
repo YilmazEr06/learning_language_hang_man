@@ -10,13 +10,14 @@ import 'package:hang_man/screens/settingsscreen/companents/username.dart';
 import 'package:hang_man/screens/settingsscreen/companents/userphoto.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({super.key});
-
+  const Settings({super.key, required this.refresh});
+  final VoidCallback refresh ;
   @override
   State<Settings> createState() => _HomePageWidgetState();
 }
 
-class _HomePageWidgetState extends State<Settings> with TickerProviderStateMixin{
+class _HomePageWidgetState extends State<Settings>
+    with TickerProviderStateMixin {
   late double slidersoundvalue;
   late double sliderkeyboardsoundvalue;
 
@@ -28,12 +29,12 @@ class _HomePageWidgetState extends State<Settings> with TickerProviderStateMixin
 
   late Animation _opacityanimation;
   late AnimationController _controlleropacity;
- 
+
   String name = "";
   int scor = 0;
   int uid = 12345;
   int level = 0;
-
+  String avatar = "1";
 
   @override
   void initState() {
@@ -53,32 +54,24 @@ class _HomePageWidgetState extends State<Settings> with TickerProviderStateMixin
         opacity = _opacityanimation.value;
       });
     });
-
-     Data().getUserInfo().then((value) {
-        setState(() {
-          print(value);
-          name = value["Users"]["username"];
-          scor = value["Users"]["scor"];
-          uid = value["Users"]["uid"];
-          level = value["Users"]["level"];
-        });
-      });
+   getuserinfo();
     Timer(const Duration(milliseconds: 1), () {
       animate();
-     
-
     });
-
-
-      
-    
-
-
-     
-
   }
- 
- 
+
+  getuserinfo() {
+    Data().getUserInfo().then((value) {
+      setState(() {
+        name = value["Users"]["username"];
+        scor = value["Users"]["scor"];
+        uid = value["Users"]["uid"];
+        level = value["Users"]["level"];
+        avatar = value["Users"]["avatar"];
+      });
+    });
+  }
+
   void animate() {
     _moveanimation = _controllermove.drive(
       Tween<double>(
@@ -106,12 +99,8 @@ class _HomePageWidgetState extends State<Settings> with TickerProviderStateMixin
     _controlleropacity.dispose();
   }
 
- 
-
-
   @override
   Widget build(BuildContext context) {
-     
     return Scaffold(
       backgroundColor: const Color(0xFFEDDB9A),
       body: SafeArea(
@@ -120,14 +109,25 @@ class _HomePageWidgetState extends State<Settings> with TickerProviderStateMixin
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              const Appbar(text: "ayarlar",),
-              SizedBox(height: height,),
+              const Appbar(
+                text: "ayarlar",
+              ),
+              SizedBox(
+                height: height,
+              ),
               Opacity(
                 opacity: opacity,
                 child: Column(
                   children: [
-                    const Userphoto(),
-                   Username(username: name),
+                    Userphoto(
+                      avatar: avatar,
+                      refresh: () {
+                        setState(() {
+                          getuserinfo();
+                        });
+                      },
+                    ),
+                    Username(username: name, refresh:widget.refresh),
                     userid(context, uid.toString()),
                     const Slidersound(),
                     const Keyboardsound(),
