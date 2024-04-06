@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 
 class Appbar extends StatefulWidget {
   const Appbar({
-    super.key,
+    super.key, required this.text,
   });
-
+  final String text;
   @override
   State<Appbar> createState() => _AppbarState();
 }
@@ -28,11 +28,11 @@ class _AppbarState extends State<Appbar> with TickerProviderStateMixin {
         ),
       ),
       alignment: const AlignmentDirectional(0, 0),
-      child: const Stack(
+      child:  Stack(
         children: [
           Text(
-            'AYARLAR',
-            style: TextStyle(fontFamily: "akayakanadaka", fontSize: 50),
+           widget.text.toUpperCase(),
+            style: const TextStyle(fontFamily: "akayakanadaka", fontSize: 50),
           ),
         ],
       ),

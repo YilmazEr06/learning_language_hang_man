@@ -100,20 +100,19 @@ Padding head(String head, bool iscurrent) {
   }
 
   return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: SizedBox(
-      height: 45,
-      width: width,
+      padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 2),
       child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: iscurrent ? Colors.amber : Colors.grey,
-          ),
-          child: Center(
-              child: Text(
-            head.toUpperCase(),
-            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          ))),
-    ),
-  );
+        
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            color: iscurrent? const Color.fromARGB(255, 212, 169, 25): const Color.fromARGB(136, 228, 187, 53),
+            borderRadius: BorderRadius.circular(20)),
+        height: 35,
+        width: width,
+        child: Text(
+          head.toUpperCase(),
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
 }

@@ -35,7 +35,7 @@ class _CategoryFieldsState extends State<CategoryFields> {
                 return Text('Error: ${snapshot.error}');
               } else {
                 var a = snapshot.data;
-                List<Widget> heads = [];
+                List<Widget> heads = [const SizedBox(width: 5,)];
                 for (var b in a!) {
                   heads.add(GestureDetector(
                     onTap: () {

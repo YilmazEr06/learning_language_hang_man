@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hang_man/models/word.dart';
 import 'package:hang_man/screens/gamepage/companents/klavye.dart';
 import 'package:hang_man/screens/gamepage/companents/paper.dart';
-import 'package:hang_man/screens/gamepage/companents/userinfobar.dart';
+import 'package:hang_man/screens/gamepage/companents/userinfobargame/userinfobargame.dart';
 
 class Gamepage extends StatefulWidget {
   const Gamepage({super.key});
@@ -12,9 +12,9 @@ class Gamepage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<Gamepage> with TickerProviderStateMixin {
-
   double bottom = -10;
   double opacity = 0;
+  int gamescor = 0;
 
   late Animation _moveanimation;
   late AnimationController _controllermove;
@@ -22,7 +22,7 @@ class _MyHomePageState extends State<Gamepage> with TickerProviderStateMixin {
   late Animation _opacityanimation;
   late AnimationController _controlleropacity;
 
-   @override
+  @override
   void initState() {
     super.initState();
     _controllermove = AnimationController(
@@ -41,11 +41,9 @@ class _MyHomePageState extends State<Gamepage> with TickerProviderStateMixin {
       });
     });
 
-
     Timer(const Duration(milliseconds: 1), () {
       animate();
     });
-
   }
 
   void animate() {
@@ -67,12 +65,14 @@ class _MyHomePageState extends State<Gamepage> with TickerProviderStateMixin {
     _controlleropacity.reset();
     _controlleropacity.forward();
   }
-   @override
+
+  @override
   void dispose() {
     super.dispose();
     _controllermove.dispose();
     _controlleropacity.dispose();
   }
+
   List passedbuttons = [];
   @override
   Widget build(BuildContext context) {
@@ -88,6 +88,15 @@ class _MyHomePageState extends State<Gamepage> with TickerProviderStateMixin {
       });
     }
 
+    increasescor() {
+      Timer(const Duration(microseconds: 10), () {
+        setState(() {
+          gamescor = gamescor + 10;
+        
+        });
+      });
+    }
+
     return Scaffold(
         body: SingleChildScrollView(
       child: Center(
@@ -97,13 +106,14 @@ class _MyHomePageState extends State<Gamepage> with TickerProviderStateMixin {
           child: SafeArea(
             maintainBottomViewPadding: true,
             child: Column(children: [
-              const Userinfobar(),
+              Userinfobargame(gamescor: gamescor),
               Gamepaper(
-                arguments: arguments, 
+                increasescor: increasescor,
+                arguments: arguments,
                 passedbuttons: passedbuttons,
                 opacity: opacity,
                 bottom: bottom,
-                ),
+              ),
               Klavye(
                 passedbuttonsfunc: addpassedbuttons,
                 bottom: bottom,
@@ -117,4 +127,3 @@ class _MyHomePageState extends State<Gamepage> with TickerProviderStateMixin {
     ));
   }
 }
-

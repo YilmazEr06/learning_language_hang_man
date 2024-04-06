@@ -1,18 +1,19 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:hang_man/bloc/databloc.dart';
 
 
 class Username extends StatefulWidget {
   const Username({
-    super.key,
+    super.key, required this.username,
   });
-
+   final String username;
   @override
   State<Username> createState() => _UsernameState();
 }
 
-class _UsernameState extends State<Username> with TickerProviderStateMixin{
+class _UsernameState extends State<Username> {
 
 
   
@@ -62,13 +63,16 @@ class _UsernameState extends State<Username> with TickerProviderStateMixin{
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(31, 60, 61, 62),
                             borderRadius: BorderRadius.circular(15)),
-                        child: const TextField(
+                        child:  TextField(
+                          onSubmitted: (value) {
+                             Data().changeusermame(value);
+                          },
                           decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Colors.greenAccent, width: 5.0),
+                                  color: Color.fromARGB(255, 196, 197, 197), width: 5.0),
                             ),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20)),
                               borderSide: BorderSide(
@@ -76,7 +80,7 @@ class _UsernameState extends State<Username> with TickerProviderStateMixin{
                                 width: 4.0,
                               ),
                             ),
-                            hintText: '#oldusername',
+                            hintText: widget.username,
                           ),
                         )))
               ],

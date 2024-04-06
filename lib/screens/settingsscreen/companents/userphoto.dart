@@ -28,11 +28,17 @@ class _UserphotoState extends State<Userphoto> with TickerProviderStateMixin {
             topRight: Radius.circular(100),
           ),
         ),
-        child: CircleAvatar(
-          radius: 100,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(50.0),
-            child: Image.asset("lib/assets/images/indir.jpeg"),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context,  '/avatarsettings');
+          
+          },
+          child: CircleAvatar(
+            radius: 100,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50.0),
+              child: Image.asset("lib/assets/images/indir.jpeg"),
+            ),
           ),
         ),
       ),

@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-Widget userid(BuildContext context) {
+Widget userid(BuildContext context,  String id) {
+
     return Padding(
       padding: const EdgeInsets.all(12),
       child: SizedBox(
@@ -49,15 +50,15 @@ Widget userid(BuildContext context) {
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(31, 60, 61, 62),
                             borderRadius: BorderRadius.circular(15)),
-                        child: const TextField(
+                        child:  TextField(
                           enabled: false,
                           decoration:  InputDecoration(
                           
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(
                                   color: Colors.greenAccent, width: 5.0),
                             ),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(Radius.circular(20)),
                               borderSide:
                                   BorderSide(
@@ -65,7 +66,7 @@ Widget userid(BuildContext context) {
                                    width: 4.0,
                                   ),
                             ),
-                            hintText: '#userid',
+                            hintText:id,
                           ),
                         )))
               ],

@@ -1,4 +1,5 @@
 import 'package:hang_man/data_sources/firebase.dart';
+import 'package:hang_man/data_sources/shared_preferences.dart';
 
 import 'package:hang_man/models/usermodelforscortable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,6 +37,7 @@ class Data {
 
     return userInfo;
   }
+  
 
   Future<List> getlevelcards(catagory) async {
     List cards = [];
@@ -74,4 +76,15 @@ class Data {
   addnewuser(UserModel user) async {
     Firebasehlp().newuser(user);
   }
+
+  changeusermame(String newname) async {
+    Sharedpreferences().setusername(newname).then((value) {
+       Sharedpreferences().getfirebasedocumentid().then((value) {
+          Firebasehlp().changeusername(value ,newname);
+       });
+    },);
+      
+  
+  }
+  
 }

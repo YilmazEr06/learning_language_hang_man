@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hang_man/bloc/databloc.dart';
 import 'package:hang_man/screens/settingsscreen/companents/appbar.dart';
 import 'package:hang_man/screens/settingsscreen/companents/keyboardsoundslider.dart';
 import 'package:hang_man/screens/settingsscreen/companents/sounslider.dart';
@@ -27,6 +28,11 @@ class _HomePageWidgetState extends State<Settings> with TickerProviderStateMixin
 
   late Animation _opacityanimation;
   late AnimationController _controlleropacity;
+ 
+  String name = "";
+  int scor = 0;
+  int uid = 12345;
+  int level = 0;
 
 
   @override
@@ -48,13 +54,31 @@ class _HomePageWidgetState extends State<Settings> with TickerProviderStateMixin
       });
     });
 
-
+     Data().getUserInfo().then((value) {
+        setState(() {
+          print(value);
+          name = value["Users"]["username"];
+          scor = value["Users"]["scor"];
+          uid = value["Users"]["uid"];
+          level = value["Users"]["level"];
+        });
+      });
     Timer(const Duration(milliseconds: 1), () {
       animate();
+     
+
     });
 
-  }
 
+      
+    
+
+
+     
+
+  }
+ 
+ 
   void animate() {
     _moveanimation = _controllermove.drive(
       Tween<double>(
@@ -82,9 +106,12 @@ class _HomePageWidgetState extends State<Settings> with TickerProviderStateMixin
     _controlleropacity.dispose();
   }
 
+ 
+
 
   @override
   Widget build(BuildContext context) {
+     
     return Scaffold(
       backgroundColor: const Color(0xFFEDDB9A),
       body: SafeArea(
@@ -93,15 +120,15 @@ class _HomePageWidgetState extends State<Settings> with TickerProviderStateMixin
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              const Appbar(),
+              const Appbar(text: "ayarlar",),
               SizedBox(height: height,),
               Opacity(
                 opacity: opacity,
                 child: Column(
                   children: [
                     const Userphoto(),
-                    const Username(),
-                    userid(context),
+                   Username(username: name),
+                    userid(context, uid.toString()),
                     const Slidersound(),
                     const Keyboardsound(),
                   ],

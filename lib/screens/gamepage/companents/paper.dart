@@ -12,11 +12,13 @@ class Gamepaper extends StatefulWidget {
     required this.passedbuttons,
     required this.opacity,
     required this.bottom,
+    required this.increasescor,
   });
   final List<WordModel> arguments;
   final List passedbuttons;
   final double opacity;
   final double bottom;
+  final VoidCallback increasescor;
   @override
   State<Gamepaper> createState() => PageState();
 }
@@ -26,7 +28,6 @@ class PageState extends State<Gamepaper> {
   @override
   Widget build(BuildContext context) {
     List<Field> fields = [];
-
     double size = 25;
     List<String> words = widget.arguments[index].name.split(" ");
     List<Row> rows = [];
@@ -66,15 +67,18 @@ class PageState extends State<Gamepaper> {
           known = known + 1;
 
           if (known == x.length) {
+            widget.increasescor();
             if (index == widget.arguments.length - 1) {
-              print("Oyun sonu");
+              //oyun sonu
             } else {
+              //kelimenn bilinmesi durumu
+
               setState(() {
                 index = index + 1;
                 known = 0;
-                widget.passedbuttons.clear();
               });
             }
+            widget.passedbuttons.clear();
           }
         }
       }
@@ -157,12 +161,9 @@ class PageState extends State<Gamepaper> {
 
           if (known == x.length) {
             if (index > widget.arguments.length - 1) {
-              print("Oyun sonu");
             } else {
               setState(() {
                 index = index + 1;
-                print("index");
-                print(index);
               });
             }
           }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hang_man/screens/changeavatar/avatar.dart';
 import 'package:hang_man/screens/gamepage/companents/deadialog.dart';
 import 'package:hang_man/screens/gamepage/gamescreen.dart';
 import 'package:hang_man/screens/catagorypage/catagorypage.dart';
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
       '/wordview':(context)=>const Wordviewpage(),
       '/deaddialog':(context)=>Deadialog(),
       '/main':(context)=>const MyHomePage(),
-      '/settings':(context)=>const Settings()
+      '/settings':(context)=>const Settings(),
+      '/avatarsettings':(context)=>const Changeavatar()
       
     },
       title: 'Flutter Demo',

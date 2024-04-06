@@ -16,7 +16,16 @@ class Sharedpreferences {
     prefs = await SharedPreferences.getInstance();
     prefs!.setString('name', name).then((value) {});
   }
-
+   Future setfirebasedocumentid(String id) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs!.setString('firebasedocumentid', id);
+  }
+ 
+ Future<String?> getfirebasedocumentid() async {
+    prefs = await SharedPreferences.getInstance();
+    String? id =  prefs!.getString('firebasedocumentid');
+    return  id;
+  }
   Future setuserrandomid() async {
     prefs = await SharedPreferences.getInstance();
     var rng = Random();

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:hang_man/bloc/databloc.dart';
+import 'package:hang_man/data_sources/shared_preferences.dart';
 import 'package:hang_man/models/usermodelforscortable.dart';
 
 class Firebasehlp {
@@ -18,6 +19,17 @@ class Firebasehlp {
     }
 
     return catagories;
+  }
+
+  changeusername(String? value, String newname) async {
+    final docRef = db.collection("users");
+
+    docRef.doc(value).get().then((value1) {
+      var map = value1.data();
+      map!["Users"]["username"] = newname;
+      docRef.doc(value).update(map);
+      print(value1.data());
+    });
   }
 
   Future<String> getcatagoryimageurl() async {
@@ -115,26 +127,28 @@ class Firebasehlp {
   }
 
   Future<void> newuser(UserModel user) async {
-  Map<String, dynamic> details = {};
+    Map<String, dynamic> details = {};
 
-  details["Users"] = {}; // Initialize nested map for "Users"
-  details["Users"]["scors"] = {};
-  // Set user details
-  details["Users"]["username"] = user.username;
-  details["Users"]["uid"] = user.uid;
-  details["Users"]["level"] = user.level;
-  details["Users"]["avatar"] = "avatar1";
+    details["Users"] = {}; // Initialize nested map for "Users"
+    details["Users"]["scors"] = {};
+    // Set user details
+    details["Users"]["username"] = user.username;
+    details["Users"]["uid"] = user.uid;
+    details["Users"]["level"] = user.level;
+    details["Users"]["avatar"] = "avatar1";
 
+    // Get dynamic fields from database
+    List<dynamic> categories = await Data().getcatagory();
 
-  // Get dynamic fields from database
-  List<dynamic> categories = await Data().getcatagory();
+    // Add dynamic fields to the "Users" map
+    for (var element in categories) {
+      details["Users"]["scors"][element] = 0;
+    }
 
-  // Add dynamic fields to the "Users" map
-  for (var element in categories) {
-    details["Users"]["scors"][element] = 0;
+    // Add user details to the database collection
+    await db.collection("users").add(details).then((value) {
+      Sharedpreferences().setfirebasedocumentid(value.id);
+      print(value.id);
+    });
   }
-
-  // Add user details to the database collection
-  await db.collection("users").add(details);
-}
 }

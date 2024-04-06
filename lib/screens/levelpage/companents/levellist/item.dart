@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'package:hang_man/bloc/databloc.dart';
+import 'package:hang_man/models/word.dart';
 
 class ListItem extends ListTile {
   const ListItem({
@@ -23,8 +24,19 @@ class ListItem extends ListTile {
             borderRadius: BorderRadius.circular(15)),
         child: ListTile(
           onTap: () {
-            
-            Navigator.pushReplacementNamed(context,  '/wordview',arguments: [id,catagory,i]);
+            //  kelime öz izleme sayfası
+            //  Navigator.pushReplacementNamed(context, '/wordview',
+            //      arguments: [id, catagory, i]);
+            Data().getwords(id, catagory, i).then((value) {
+              List<WordModel> words = [];
+              for (var i in value) {
+                words.add(
+                    WordModel(name: i["name"], description: i["description"]));
+              }
+               Navigator.pushReplacementNamed(context, '/gamepage',
+                arguments: words);
+            });
+           
           },
           tileColor: const Color.fromARGB(255, 236, 8, 8),
           title: Text(i.toUpperCase()),
