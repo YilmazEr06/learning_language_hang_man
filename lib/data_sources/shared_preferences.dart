@@ -67,13 +67,14 @@ class Sharedpreferences {
         final result = await InternetAddress.lookup('example.com');
         if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
           print('connected');
-          Data().addnewuser(UserModel(
+          Data().addnewuser(
+            UserModel(
               uid: value.toString(), username: name, scor: {
         "hepsi": 0,
         "sanat": 0,
         "bilim": 0,
 
-      }, level: 1));
+      }, level: 1,avatar: "1"));
         }
       } on SocketException catch (_) {
         print('not connected');

@@ -3,12 +3,14 @@ class UserModel {
    Map scor;
    int level;
    String uid;
+   String avatar;
 
   UserModel({
     required this.uid,
     required this.username,
     required this.scor,
     required this.level,
+    required this.avatar,
   });
   factory UserModel.fromJson(Map<String, dynamic> json) {
    
@@ -17,6 +19,7 @@ class UserModel {
       username: json["Users"]['username'],
       scor: json["Users"]['scors'],
       level: json["Users"]['level'],
+      avatar: json["Users"]['avatar'],
     );
   }
   factory UserModel.defaultuser() {
@@ -30,6 +33,7 @@ class UserModel {
 
       },
       level: 1,
+      avatar: "1"
     );
   }
 

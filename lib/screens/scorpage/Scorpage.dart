@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+
 import 'package:hang_man/screens/scorpage/companents/Scorinfobar.dart';
 import 'package:hang_man/screens/scorpage/companents/catagoryrow.dart';
 import 'package:hang_man/screens/scorpage/companents/userlistcolumn/userlistcolumn.dart';

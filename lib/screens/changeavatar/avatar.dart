@@ -105,7 +105,6 @@ class _HomePageWidgetState extends State<Changeavatar>
                           height: 500,
                           child: Swiper(
                             itemBuilder: (BuildContext context, int index) {
-                              currentavatar = (index).toString();
                               return Image.asset(
                                   "lib/assets/images/avatarlar/${(index + 1).toString()}.png");
                             },
@@ -113,6 +112,9 @@ class _HomePageWidgetState extends State<Changeavatar>
                             viewportFraction: 0.6,
                             scale: 0.5,
                             controller: controller,
+                            onIndexChanged: (value) {
+                              currentavatar = (value + 1).toString();
+                            },
                           )),
                     ],
                   ),
